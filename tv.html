@@ -1,0 +1,39 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NanotechSoft • Tela da TV</title><style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#070c0a;color:#f5f7ef;font-family:Arial,sans-serif}header{position:sticky;top:0;background:#101d17;display:flex;justify-content:space-between;align-items:center;padding:14px 3vw;border-bottom:1px solid #537b60;gap:16px}header strong{color:#b8ff56;font-size:clamp(16px,2vw,28px)}header small{color:#a8b9ac}main{padding:3vw 5vw}h1{font-size:clamp(30px,5vw,65px);margin:0 0 8px}#meta{color:#b8ff56;font-size:clamp(16px,2vw,26px);margin-bottom:25px}#lyric{font:clamp(21px,2.5vw,38px)/1.55 ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere}#lyric .chord{color:#b8ff56;font-weight:bold}#empty{color:#b8ff56;font-size:clamp(20px,3vw,40px);text-align:center;margin-top:20vh}#status{font-size:13px;color:#b8ff56}body.light{background:#fff;color:#111}body.light header{background:#e7eee8;color:#111}body.light #lyric .chord{color:#176a3e}button{border:1px solid #b8ff56;border-radius:8px;background:#1e3325;color:white;padding:8px 14px}@media print{header{display:none}}
+</style></head><body><header><strong>NAN 'O TECH · CIFRAS</strong><span id="status">Conectando…</span><button onclick="document.documentElement.requestFullscreen?.()">TELA CHEIA ⛶</button></header><main><div id="empty">Aguardando seleção no celular…</div><h1 id="title"></h1><div id="meta"></div><div id="lyric"></div></main><script>
+const room=window.NT_ROOM||new URLSearchParams(location.search).get('room')||'';
+let version=-1;
+function render(song){
+ document.getElementById('empty').hidden=true;
+ document.getElementById('title').textContent=song.title||'';
+ document.getElementById('meta').textContent=[song.artist,song.key?'Tom: '+song.key:''].filter(Boolean).join('  ·  ');
+ const lyric=document.getElementById('lyric');lyric.replaceChildren();
+ const columns=Math.max(1,Math.min(3,Number(song.columns)||1));
+ const font=Math.max(11,Math.min(72,Number(song.fontSize)||24));
+ lyric.style.fontSize=font+'px';lyric.style.columnCount=columns;lyric.style.columnGap='3vw';
+ document.body.classList.toggle('light',!song.dark);
+ if(song.text){
+   const lines=song.text.split(/\r?\n/);
+   lines.forEach((line,i)=>{
+     const div=document.createElement('div');
+     const chords=/^\s*([A-G](#|b)?[^\s]*\s*)+$/.test(line)&&/[A-G]/.test(line);
+     if(chords)div.className='chord';
+     div.textContent=line||'\u00a0';lyric.appendChild(div);
+   });
+ }else if(song.html){
+   // Cifras legadas: sanitizar HTML em vez de executar marcação recebida.
+   lyric.textContent=song.html.replace(/<[^>]*>/g,' ').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>');
+ }else lyric.textContent='Cifra ainda não cadastrada.';
+}
+async function poll(){
+ try{
+  const r=await fetch('/api/state?room='+encodeURIComponent(room),{cache:'no-store'});
+  if(!r.ok)throw Error('Sala não encontrada');
+  const data=await r.json();
+  if(data.version!==version){version=data.version;if(data.song)render(data.song)}
+  document.getElementById('status').textContent='● Conectado';
+ }catch(e){document.getElementById('status').textContent='● Sem conexão — tentando novamente'}
+ setTimeout(poll,800);
+}
+poll();
+</script></body></html>

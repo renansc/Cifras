@@ -1,0 +1,658 @@
+{
+  "repertoires": [
+    {
+      "id": "rep_principal",
+      "name": "Repertório Principal",
+      "alias": "",
+      "songs": [
+        "m0001",
+        "m0002",
+        "m0003",
+        "m0004",
+        "m0005",
+        "m0006",
+        "m0007",
+        "m0008",
+        "m0009",
+        "m0010",
+        "m0011",
+        "m0012",
+        "m0013",
+        "m0014",
+        "m0015",
+        "m0016",
+        "m0017",
+        "m0018",
+        "m0019",
+        "m0020",
+        "m0021",
+        "m0022",
+        "m0023",
+        "m0024",
+        "m0025",
+        "m0026",
+        "m0027",
+        "m0028",
+        "m0029",
+        "m0030",
+        "m0031",
+        "m0032",
+        "m0033",
+        "m0034",
+        "m0035",
+        "m0036",
+        "m0037",
+        "m0038"
+      ]
+    },
+    {
+      "id": "rep_rock",
+      "name": "Rock",
+      "alias": "Banda X",
+      "songs": [
+        "m0039",
+        "m0040",
+        "m0041",
+        "m0042",
+        "m0043",
+        "m0044",
+        "m0045",
+        "m0046",
+        "m0047",
+        "m0048",
+        "m0049",
+        "m0050",
+        "m0051",
+        "m0052",
+        "m0053",
+        "m0054",
+        "m0055",
+        "m0056",
+        "m0057",
+        "m0058"
+      ]
+    }
+  ],
+  "songs": [
+    {
+      "num": "01",
+      "title": "Boate Azul",
+      "artist": "Joaquim e Manuel",
+      "key": "Dm",
+      "url": "https://www.cifranet.com.br/cifra/boate-azul-joaquim-e-manuel-191813",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0001"
+    },
+    {
+      "num": "02",
+      "title": "Decida",
+      "artist": "Milionário e José Rico",
+      "key": "Dm",
+      "url": "https://www.cifranet.com.br/cifra/decida-milionario-e-jose-rico-215388",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0002"
+    },
+    {
+      "num": "03",
+      "title": "Dama de Vermelho",
+      "artist": "Milionário e José Rico",
+      "key": "G",
+      "url": "https://www.cifranet.com.br/cifra/dama-de-vermelho-milionario-e-jose-rico-47377",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0003"
+    },
+    {
+      "num": "04",
+      "title": "Saudade",
+      "artist": "Chrystian e Ralf",
+      "key": "B",
+      "url": "https://www.cifranet.com.br/cifra/saudade-chrystian-e-ralf-217734",
+      "semitones": "2",
+      "observation": "",
+      "id": "m0004"
+    },
+    {
+      "num": "05",
+      "title": "Nova York",
+      "artist": "Chrystian e Ralf",
+      "key": "B",
+      "url": "https://www.cifranet.com.br/cifra/nova-york-chrystian-e-ralf-549270",
+      "semitones": "-1",
+      "observation": "",
+      "id": "m0005"
+    },
+    {
+      "num": "06",
+      "title": "Caso Marcado",
+      "artist": "César Menotti e Fabiano",
+      "key": "G",
+      "url": "https://www.cifranet.com.br/cifra/caso-marcado-cesar-menotti-e-fabiano-29738",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0006"
+    },
+    {
+      "num": "07",
+      "title": "Como um Anjo",
+      "artist": "Zezé Di Camargo e Luciano",
+      "key": "G",
+      "url": "https://www.cifranet.com.br/cifra/como-um-anjo-zeze-di-camargo-e-luciano-204258",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0007"
+    },
+    {
+      "num": "08",
+      "title": "Convite de Casamento",
+      "artist": "Gian e Giovani",
+      "key": "C",
+      "url": "https://www.cifranet.com.br/cifra/convite-de-casamento-gian-e-giovani-211300",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0008"
+    },
+    {
+      "num": "09",
+      "title": "Página de Amigos",
+      "artist": "Chitãozinho e Xororó",
+      "key": "Db",
+      "url": "https://www.cifranet.com.br/cifra/pagina-de-amigos-chitaozinho-xororo-287329",
+      "semitones": "-1",
+      "observation": "",
+      "id": "m0009"
+    },
+    {
+      "num": "10",
+      "title": "Tentei Te Esquecer",
+      "artist": "Matogrosso e Mathias",
+      "key": "B",
+      "url": "https://www.cifranet.com.br/cifra/tentei-te-esquecer-matogrosso-e-mathias-264527",
+      "semitones": "2",
+      "observation": "",
+      "id": "m0010"
+    },
+    {
+      "num": "11",
+      "title": "Irmão da Lua",
+      "artist": "Zezé Di Camargo e Luciano",
+      "key": "Db",
+      "url": "https://www.cifranet.com.br/cifra/irmao-da-lua-amigo-das-estrelas-ver-2-zeze-di-camargo-e-luciano-105430",
+      "semitones": "-2",
+      "observation": "",
+      "id": "m0011"
+    },
+    {
+      "num": "12",
+      "title": "Por um Gole a Mais",
+      "artist": "Bruno e Marrone",
+      "key": "G",
+      "url": "https://www.cifranet.com.br/cifra/por-um-gole-a-mais-bruno-e-marrone-236226",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0012"
+    },
+    {
+      "num": "13",
+      "title": "Bijuteria",
+      "artist": "Bruno e Marrone",
+      "key": "Am",
+      "url": "https://www.cifranet.com.br/cifra/bijuteria-ver-2-bruno-e-marrone-153679",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0013"
+    },
+    {
+      "num": "14",
+      "title": "Coração Bandido",
+      "artist": "Leonardo",
+      "key": "F",
+      "url": "https://www.cifranet.com.br/cifra/coracao-bandido-leonardo-91405",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0014"
+    },
+    {
+      "num": "15",
+      "title": "Você Mudou",
+      "artist": "Cristiano Araújo",
+      "key": "Em",
+      "url": "https://www.cifranet.com.br/cifra/voce-mudou-cristiano-araujo-321072",
+      "semitones": "2",
+      "observation": "",
+      "id": "m0015"
+    },
+    {
+      "num": "16",
+      "title": "Caso Indefinido",
+      "artist": "Cristiano Araújo",
+      "key": "C#m",
+      "url": "https://www.cifranet.com.br/cifra/caso-indefinido-cristiano-araujo-32407",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0016"
+    },
+    {
+      "num": "17",
+      "title": "Efeitos",
+      "artist": "Cristiano Araújo",
+      "key": "Dm",
+      "url": "https://www.cifranet.com.br/cifra/efeitos-cristiano-araujo-319368",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0017"
+    },
+    {
+      "num": "18",
+      "title": "Maus Bocados",
+      "artist": "Cristiano Araújo",
+      "key": "C",
+      "url": "https://www.cifranet.com.br/cifra/maus-bocados-cristiano-araujo-32452",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0018"
+    },
+    {
+      "num": "19",
+      "title": "Tubarões",
+      "artist": "Diego e Victor Hugo",
+      "key": "Ab",
+      "url": "https://www.cifranet.com.br/cifra/tubaroes-diego-e-victor-hugo-81118",
+      "semitones": "1",
+      "observation": "",
+      "id": "m0019"
+    },
+    {
+      "num": "20",
+      "title": "Eu Te Seguro",
+      "artist": "Panda",
+      "key": "A",
+      "url": "https://www.cifranet.com.br/cifra/eu-te-seguro-panda-cantor-62546",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0020"
+    },
+    {
+      "num": "21",
+      "title": "Locutor",
+      "artist": "Léo Magalhães",
+      "key": "B",
+      "url": "https://www.cifranet.com.br/cifra/locutor-leo-magalhaes-283938",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0021"
+    },
+    {
+      "num": "22",
+      "title": "Americana na Vaquejada",
+      "artist": "Nattan",
+      "key": "Bm",
+      "url": "",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0022"
+    },
+    {
+      "num": "23",
+      "title": "Chorei na Vaquejada",
+      "artist": "Eric Land",
+      "key": "E",
+      "url": "https://www.cifranet.com.br/cifra/chorei-na-vaquejada-eric-land-527150",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0023"
+    },
+    {
+      "num": "24",
+      "title": "No Ouvidinho",
+      "artist": "Felipe Amorim",
+      "key": "Cm",
+      "url": "https://www.cifranet.com.br/cifra/no-ouvidinho-felipe-amorim-510429",
+      "semitones": "3",
+      "observation": "",
+      "id": "m0024"
+    },
+    {
+      "num": "25",
+      "title": "Bombonzinho",
+      "artist": "Israel e Rodolffo",
+      "key": "Bbm",
+      "url": "https://www.cifranet.com.br/cifra/bombonzinho-ft-ana-castela-israel-e-rodolffo-520015",
+      "semitones": "1",
+      "observation": "",
+      "id": "m0025"
+    },
+    {
+      "num": "26",
+      "title": "Xote da Alegria",
+      "artist": "Falamansa",
+      "key": "G",
+      "url": "https://www.cifranet.com.br/cifra/xote-da-alegria-falamansa-37065",
+      "semitones": "1",
+      "observation": "",
+      "id": "m0026"
+    },
+    {
+      "num": "27",
+      "title": "Xote dos Milagres",
+      "artist": "Falamansa",
+      "key": "G",
+      "url": "https://www.cifranet.com.br/cifra/xote-dos-milagres-falamansa-37068",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0027"
+    },
+    {
+      "num": "28",
+      "title": "Sapatilha 37",
+      "artist": "Guentaê",
+      "key": "G",
+      "url": "https://www.cifranet.com.br/cifra/sapatilha-37-guentae-207165",
+      "semitones": "2",
+      "observation": "",
+      "id": "m0028"
+    },
+    {
+      "num": "29",
+      "title": "Tem Nada a Ver",
+      "artist": "Jorge e Mateus",
+      "key": "E",
+      "url": "https://www.cifranet.com.br/cifra/tem-nada-a-ver-jorge-e-mateus-266208",
+      "semitones": "-3",
+      "observation": "",
+      "id": "m0029"
+    },
+    {
+      "num": "30",
+      "title": "Vou Fazer Pirraça",
+      "artist": "Jorge e Mateus",
+      "key": "E",
+      "url": "https://www.cifranet.com.br/cifra/vou-fazer-pirraca-part-asa-de-guia-jorge-e-mateus-42573",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0030"
+    },
+    {
+      "num": "31",
+      "title": "Seu Astral",
+      "artist": "Jorge e Mateus",
+      "key": "D",
+      "url": "https://www.cifranet.com.br/cifra/seu-astral-jorge-e-mateus-316057",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0031"
+    },
+    {
+      "num": "32",
+      "title": "Amo Noite e Dia",
+      "artist": "Jorge e Mateus",
+      "key": "C#m",
+      "url": "https://www.cifranet.com.br/cifra/amo-noite-e-dia-jorge-e-mateus-305760",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0032"
+    },
+    {
+      "num": "33",
+      "title": "Chora Me Liga",
+      "artist": "Jorge e Mateus",
+      "key": "C",
+      "url": "https://www.cifranet.com.br/cifra/chora-me-liga-jorge-e-mateus-112951",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0033"
+    },
+    {
+      "num": "34",
+      "title": "Jeito Carinhoso",
+      "artist": "Aviões do Forró",
+      "key": "Em",
+      "url": "https://www.cifranet.com.br/cifra/jeito-carinhoso-avioes-do-forro-24938",
+      "semitones": "-3",
+      "observation": "",
+      "id": "m0034"
+    },
+    {
+      "num": "35",
+      "title": "Sinal Disfarçado",
+      "artist": "Zé Ricardo e Thiago",
+      "key": "B",
+      "url": "https://www.cifranet.com.br/cifra/sinal-disfarcado-ze-ricardo-e-thiago-76922",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0035"
+    },
+    {
+      "num": "36",
+      "title": "Não Tô Valendo Nada",
+      "artist": "Henrique e Juliano",
+      "key": "E",
+      "url": "https://www.cifranet.com.br/cifra/nao-to-valendo-nada-henrique-e-juliano-375327",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0036"
+    },
+    {
+      "num": "37",
+      "title": "Eva",
+      "artist": "Banda Eva",
+      "key": "D",
+      "url": "https://www.cifranet.com.br/cifra/eva-banda-eva-207470",
+      "semitones": "-2",
+      "observation": "",
+      "id": "m0037"
+    },
+    {
+      "num": "38",
+      "title": "Parará",
+      "artist": "Chicabana",
+      "key": "C",
+      "url": "https://www.cifranet.com.br/cifra/parara-chicabana-30241",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0038"
+    },
+    {
+      "num": "01",
+      "title": "War Pigs",
+      "artist": "Black Sabbath",
+      "key": "E",
+      "url": "https://www.cifranet.com.br/cifra/war-pigs-black-sabbath-156677",
+      "semitones": "0",
+      "observation": "Referência/original anotada: D",
+      "id": "m0039"
+    },
+    {
+      "num": "02",
+      "title": "Slither",
+      "artist": "Velvet Revolver",
+      "key": "G",
+      "url": "https://www.cifranet.com.br/cifra/slither-velvet-revolver-119200",
+      "semitones": "0",
+      "observation": "Drop D",
+      "id": "m0040"
+    },
+    {
+      "num": "03",
+      "title": "Again",
+      "artist": "Lenny Kravitz",
+      "key": "A",
+      "url": "https://www.cifranet.com.br/cifra/again-lenny-kravitz-12746",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0041"
+    },
+    {
+      "num": "04",
+      "title": "Fly Away",
+      "artist": "Lenny Kravitz",
+      "key": "D",
+      "url": "https://www.cifranet.com.br/cifra/fly-away-lenny-kravitz-12748",
+      "semitones": "0",
+      "observation": "Referência anotada: A",
+      "id": "m0042"
+    },
+    {
+      "num": "05",
+      "title": "Sunshine of Your Love",
+      "artist": "Cream",
+      "key": "D",
+      "url": "https://www.cifranet.com.br/cifra/sunshine-of-your-love-cream-95376",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0043"
+    },
+    {
+      "num": "06",
+      "title": "Come Together",
+      "artist": "The Beatles",
+      "key": "D",
+      "url": "https://www.cifranet.com.br/cifra/come-together-the-beatles-19595",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0044"
+    },
+    {
+      "num": "07",
+      "title": "Little Wing",
+      "artist": "Jimi Hendrix",
+      "key": "Em",
+      "url": "https://www.cifranet.com.br/cifra/little-wing-jimi-hendrix-223891",
+      "semitones": "0",
+      "observation": "Drop Eb",
+      "id": "m0045"
+    },
+    {
+      "num": "08",
+      "title": "Voodoo Child",
+      "artist": "Jimi Hendrix",
+      "key": "E",
+      "url": "https://www.cifranet.com.br/cifra/voodoo-child-slight-return-jimi-hendrix-572029",
+      "semitones": "0",
+      "observation": "Drop Eb",
+      "id": "m0046"
+    },
+    {
+      "num": "09",
+      "title": "Purple Haze",
+      "artist": "Jimi Hendrix",
+      "key": "E",
+      "url": "https://www.cifranet.com.br/cifra/purple-haze-intro-jimi-hendrix-241988",
+      "semitones": "0",
+      "observation": "Drop Eb",
+      "id": "m0047"
+    },
+    {
+      "num": "10",
+      "title": "Rock You Like a Hurricane",
+      "artist": "Scorpions",
+      "key": "E",
+      "url": "https://www.cifranet.com.br/cifra/rock-you-like-a-hurricane-scorpions-18888",
+      "semitones": "0",
+      "observation": "Drop Eb",
+      "id": "m0048"
+    },
+    {
+      "num": "11",
+      "title": "Mama, I'm Coming Home",
+      "artist": "Ozzy Osbourne",
+      "key": "E",
+      "url": "https://www.cifranet.com.br/cifra/mama-i-m-coming-home-ozzy-osbourne-199490",
+      "semitones": "0",
+      "observation": "Drop Eb",
+      "id": "m0049"
+    },
+    {
+      "num": "12",
+      "title": "Crazy Train",
+      "artist": "Ozzy Osbourne",
+      "key": "A",
+      "url": "https://www.cifranet.com.br/cifra/crazy-train-ozzy-osbourne-15911",
+      "semitones": "0",
+      "observation": "Drop Eb",
+      "id": "m0050"
+    },
+    {
+      "num": "13",
+      "title": "My Hero",
+      "artist": "Foo Fighters",
+      "key": "E",
+      "url": "https://www.cifranet.com.br/cifra/my-hero-foo-fighters-9123",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0051"
+    },
+    {
+      "num": "14",
+      "title": "Be Yourself",
+      "artist": "Audioslave",
+      "key": "Bm",
+      "url": "https://www.cifranet.com.br/cifra/be-yourself-audioslave-570301",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0052"
+    },
+    {
+      "num": "15",
+      "title": "Free Bird",
+      "artist": "Lynyrd Skynyrd",
+      "key": "G",
+      "url": "https://www.cifranet.com.br/cifra/free-bird-lynyrd-skynyrd-211726",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0053"
+    },
+    {
+      "num": "16",
+      "title": "Black",
+      "artist": "Pearl Jam",
+      "key": "E",
+      "url": "https://www.cifranet.com.br/cifra/black-pearl-jam-16346",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0054"
+    },
+    {
+      "num": "17",
+      "title": "Under the Bridge",
+      "artist": "Red Hot Chili Peppers",
+      "key": "E",
+      "url": "https://www.cifranet.com.br/cifra/under-the-bridge-red-hot-chili-peppers-18044",
+      "semitones": "0",
+      "observation": "",
+      "id": "m0055"
+    },
+    {
+      "num": "18",
+      "title": "Like a Stone",
+      "artist": "Audioslave",
+      "key": "Gm",
+      "url": "https://www.cifranet.com.br/cifra/like-a-stone-ver-3-audioslave-213004",
+      "semitones": "0",
+      "observation": "Baixo Drop D",
+      "id": "m0056"
+    },
+    {
+      "num": "19",
+      "title": "Everlong",
+      "artist": "Foo Fighters",
+      "key": "D",
+      "url": "https://www.cifranet.com.br/cifra/everlong-foo-fighters-569824",
+      "semitones": "0",
+      "observation": "Drop D",
+      "id": "m0057"
+    },
+    {
+      "num": "20",
+      "title": "Killing in the Name",
+      "artist": "Rage Against the Machine",
+      "key": "D",
+      "url": "https://www.cifranet.com.br/cifra/killing-in-the-name-rage-against-the-machine-17646",
+      "semitones": "0",
+      "observation": "Drop D",
+      "id": "m0058"
+    }
+  ]
+}

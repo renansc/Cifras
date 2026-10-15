@@ -1,0 +1,24 @@
+NANOTECHSOFT CIFRAS V16 — TV + CONTROLE
+
+Inicie no computador servidor:
+    python3 servidor_tv.py --port 8000
+
+O terminal mostrará os endereços corretos, como:
+    Celular: http://192.168.200.254:8000/controle
+    TV:      http://192.168.200.254:8000/tv
+
+O endereço /tv exibe a cifra. O endereço /controle permite escolher músicas
+no carrossel e controlar fonte, colunas e tema da TV.
+
+BACKUP AUTOMÁTICO:
+- Coloque backup*.json na mesma pasta de servidor_tv.py.
+- Na primeira abertura de /controle em cada navegador, se não houver
+  base local válida, importa automaticamente o backup da pasta.
+- Se houver mais de um backup, usa o mais recente válido.
+- Se já houver dados no navegador, NÃO substitui esses dados.
+- Para restaurar manualmente, use o botão RESTAURAR do aplicativo.
+- A base fica no armazenamento local do navegador; abrir em outro
+  celular constitui uma nova primeira execução.
+
+Ambos os dispositivos devem acessar o servidor pela mesma rede confiável.
+Os caminhos curtos não fornecem autenticação forte.

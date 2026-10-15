@@ -1,0 +1,15 @@
+originais/*.html
+saida/*.html
+*.zip
+__pycache__/
+
+backup*.json
+**/backup*.json
+__pycache__/
+*.pyc
+.venv/
+
+backup*.json
+**/backup*.json
+__pycache__/
+*.pyc

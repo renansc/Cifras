@@ -1,0 +1,2 @@
+NanotechSoft-Cifras v8.1
+1/2/3 colunas + PDFs automáticos + verificação/instalação automática de dependências no gerar.sh.

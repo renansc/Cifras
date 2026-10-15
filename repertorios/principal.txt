@@ -1,0 +1,41 @@
+# NOME: Repertório Principal
+# APELIDO:
+# Numero|Musica|Artista|Tom|URL|Semitons
+01|Boate Azul|Joaquim e Manuel|Dm|https://www.cifranet.com.br/cifra/boate-azul-joaquim-e-manuel-191813|0
+02|Decida|Milionário e José Rico|Dm|https://www.cifranet.com.br/cifra/decida-milionario-e-jose-rico-215388|0
+03|Dama de Vermelho|Milionário e José Rico|G|https://www.cifranet.com.br/cifra/dama-de-vermelho-milionario-e-jose-rico-47377|0
+04|Saudade|Chrystian e Ralf|B|https://www.cifranet.com.br/cifra/saudade-chrystian-e-ralf-217734|2
+05|Nova York|Chrystian e Ralf|B|https://www.cifranet.com.br/cifra/nova-york-chrystian-e-ralf-549270|-1
+06|Caso Marcado|César Menotti e Fabiano|G|https://www.cifranet.com.br/cifra/caso-marcado-cesar-menotti-e-fabiano-29738|0
+07|Como um Anjo|Zezé Di Camargo e Luciano|G|https://www.cifranet.com.br/cifra/como-um-anjo-zeze-di-camargo-e-luciano-204258|0
+08|Convite de Casamento|Gian e Giovani|C|https://www.cifranet.com.br/cifra/convite-de-casamento-gian-e-giovani-211300|0
+09|Página de Amigos|Chitãozinho e Xororó|Db|https://www.cifranet.com.br/cifra/pagina-de-amigos-chitaozinho-xororo-287329|-1
+10|Tentei Te Esquecer|Matogrosso e Mathias|B|https://www.cifranet.com.br/cifra/tentei-te-esquecer-matogrosso-e-mathias-264527|2
+11|Irmão da Lua|Zezé Di Camargo e Luciano|Db|https://www.cifranet.com.br/cifra/irmao-da-lua-amigo-das-estrelas-ver-2-zeze-di-camargo-e-luciano-105430|-2
+12|Por um Gole a Mais|Bruno e Marrone|G|https://www.cifranet.com.br/cifra/por-um-gole-a-mais-bruno-e-marrone-236226|0
+13|Bijuteria|Bruno e Marrone|Am|https://www.cifranet.com.br/cifra/bijuteria-ver-2-bruno-e-marrone-153679|0
+14|Coração Bandido|Leonardo|F|https://www.cifranet.com.br/cifra/coracao-bandido-leonardo-91405|0
+15|Você Mudou|Cristiano Araújo|Em|https://www.cifranet.com.br/cifra/voce-mudou-cristiano-araujo-321072|2
+16|Caso Indefinido|Cristiano Araújo|C#m|https://www.cifranet.com.br/cifra/caso-indefinido-cristiano-araujo-32407|0
+17|Efeitos|Cristiano Araújo|Dm|https://www.cifranet.com.br/cifra/efeitos-cristiano-araujo-319368|0
+18|Maus Bocados|Cristiano Araújo|C|https://www.cifranet.com.br/cifra/maus-bocados-cristiano-araujo-32452|0
+19|Tubarões|Diego e Victor Hugo|Ab|https://www.cifranet.com.br/cifra/tubaroes-diego-e-victor-hugo-81118|1
+20|Eu Te Seguro|Panda|A|https://www.cifranet.com.br/cifra/eu-te-seguro-panda-cantor-62546|0
+21|Locutor|Léo Magalhães|B|https://www.cifranet.com.br/cifra/locutor-leo-magalhaes-283938|0
+22|Americana na Vaquejada|Nattan|Bm||0
+23|Chorei na Vaquejada|Eric Land|E|https://www.cifranet.com.br/cifra/chorei-na-vaquejada-eric-land-527150|0
+24|No Ouvidinho|Felipe Amorim|Cm|https://www.cifranet.com.br/cifra/no-ouvidinho-felipe-amorim-510429|3
+25|Bombonzinho|Israel e Rodolffo|Bbm|https://www.cifranet.com.br/cifra/bombonzinho-ft-ana-castela-israel-e-rodolffo-520015|1
+26|Xote da Alegria|Falamansa|G|https://www.cifranet.com.br/cifra/xote-da-alegria-falamansa-37065|1
+27|Xote dos Milagres|Falamansa|G|https://www.cifranet.com.br/cifra/xote-dos-milagres-falamansa-37068|0
+28|Sapatilha 37|Guentaê|G|https://www.cifranet.com.br/cifra/sapatilha-37-guentae-207165|2
+29|Tem Nada a Ver|Jorge e Mateus|E|https://www.cifranet.com.br/cifra/tem-nada-a-ver-jorge-e-mateus-266208|-3
+30|Vou Fazer Pirraça|Jorge e Mateus|E|https://www.cifranet.com.br/cifra/vou-fazer-pirraca-part-asa-de-guia-jorge-e-mateus-42573|0
+31|Seu Astral|Jorge e Mateus|D|https://www.cifranet.com.br/cifra/seu-astral-jorge-e-mateus-316057|0
+32|Amo Noite e Dia|Jorge e Mateus|C#m|https://www.cifranet.com.br/cifra/amo-noite-e-dia-jorge-e-mateus-305760|0
+33|Chora Me Liga|Jorge e Mateus|C|https://www.cifranet.com.br/cifra/chora-me-liga-jorge-e-mateus-112951|0
+34|Jeito Carinhoso|Aviões do Forró|Em|https://www.cifranet.com.br/cifra/jeito-carinhoso-avioes-do-forro-24938|-3
+35|Sinal Disfarçado|Zé Ricardo e Thiago|B|https://www.cifranet.com.br/cifra/sinal-disfarcado-ze-ricardo-e-thiago-76922|0
+36|Não Tô Valendo Nada|Henrique e Juliano|E|https://www.cifranet.com.br/cifra/nao-to-valendo-nada-henrique-e-juliano-375327|0
+37|Eva|Banda Eva|D|https://www.cifranet.com.br/cifra/eva-banda-eva-207470|-2
+38|Parará|Chicabana|C|https://www.cifranet.com.br/cifra/parara-chicabana-30241|0

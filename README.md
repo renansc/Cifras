@@ -1,19 +1,91 @@
-# NanotechSoft-Cifras
+# NanotechSoft-Cifras v3
 
-Aplicativo de repertórios e cifras com carrossel 3D, controle remoto pelo celular e apresentação em TV pela rede local.
+Gerador de repertório offline para palco.
 
-## Executar
+Entrada: `repertorio.txt`
 
-Na pasta do aplicativo, execute:
+Formato:
+`Numero|Musica|Artista|Tom|URL|Semitons`
 
+Exemplo:
+`34|Jeito Carinhoso|Aviões do Forró|Em|URL_DA_CIFRA|-3`
+
+## Instalar
 ```bash
-python3 servidor_tv.py --port 8000
+sudo apt update
+sudo apt install python3 python3-bs4
 ```
 
-Abra no navegador do celular `http://IP_DO_SERVIDOR:8000/controle` e na TV `http://IP_DO_SERVIDOR:8000/tv`.
+## Gerar
+```bash
+chmod +x gerar.sh compactar_saida.sh
+./gerar.sh
+xdg-open saida/index.html
+```
 
-Para utilização offline em uma tela, abra `saida/NanotechSoft-Cifras.html`.
+## Gerar ZIP do repertório pronto
+```bash
+./compactar_saida.sh
+```
 
-## Publicação do código
+A saída tem busca, anterior/próxima, modo claro/escuro, A-/A+, anotações por linha e exportação/importação das anotações.
 
-Os arquivos do projeto devem ser enviados para a raiz deste repositório, incluindo `servidor_tv.py`, `tv.html`, `gerar.sh`, `app/`, `saida/`, `assets/`, `repertorios/` e demais arquivos necessários. Evite publicar backups com informações pessoais ou chaves de acesso.
+A música sem URL ou cujo site bloquear download aparece como PENDENTE. O programa não tenta contornar 403, CAPTCHA ou login.
+
+Para tablet, copie/descompacte a pasta de saída localmente e abra `index.html`. Para show, isso é mais confiável que depender de abrir os HTML diretamente da nuvem.
+
+As anotações ficam no armazenamento local do navegador. Use Exportar/Importar notas para backup e transferência.
+
+
+## Backup v2
+
+Na tela principal (`index.html`) existem três novos controles:
+
+- **💾 BACKUP**: gera `backup_app_cifra_YYYY-MM-DD.json`.
+- **♻ RESTAURAR**: importa um backup em outro navegador/dispositivo.
+- **🗑 LIMPAR NOTAS**: apaga somente as anotações locais após confirmação.
+
+O backup contém:
+- todas as anotações de todas as músicas;
+- tamanho da fonte;
+- tema claro/escuro;
+- data/hora;
+- versão do formato.
+
+### Notebook -> tablet
+
+1. No notebook, abra `index.html` e clique **BACKUP**.
+2. Copie a pasta/ZIP do repertório e o JSON de backup para o Google Drive.
+3. No tablet, deixe o repertório disponível localmente/offline.
+4. Abra `index.html`.
+5. Clique **RESTAURAR** e selecione o JSON.
+6. As anotações/configurações passam a valer nesse navegador do tablet.
+
+O backup não contém as letras/cifras; elas continuam nos HTML gerados em `saida/`.
+
+
+## V3 — duas formas de uso
+
+`./gerar.sh` produz simultaneamente:
+
+1. `saida/index.html` + páginas individuais — versão tradicional.
+2. `saida/NanotechSoft-Cifras.html` — versão de arquivo único, indicada para Google Drive/tablet.
+
+O arquivo único incorpora a logo NanotechSoft e todas as músicas geradas. Anterior/Próxima/Repertório funcionam internamente, sem depender de links para outros arquivos.
+
+Para gerar pacotes de transporte:
+
+```bash
+./compactar_saida.sh
+```
+
+São criados:
+- `NanotechSoft-Cifras_completo.zip`
+- `NanotechSoft-Cifras_unico.zip`
+
+Para Google Drive/tablet, prefira `NanotechSoft-Cifras.html` ou o ZIP `NanotechSoft-Cifras_unico.zip`.
+
+
+## Publicar no GitHub
+
+Execute `bash publicar-no-github.sh` nesta pasta. O script publica os arquivos no repositório `renansc/Cifras` e exclui backups JSON locais, para não expor dados em um repositório público.

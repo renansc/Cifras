@@ -1,0 +1,29 @@
+
+/* Geometria, cores e transições equivalentes ao carrossel aprovado Nan 'o Tech */
+#nt-wheel{display:none;position:fixed;inset:0;z-index:1000;color:#f5f8f4;background:#070b0b;font-family:'DM Sans',Arial,sans-serif;overflow:hidden}
+#nt-wheel.open{display:flex;flex-direction:column}
+#nt-wheel::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 76% 49%,#21463c55,transparent 47%),linear-gradient(#ffffff06 1px,transparent 1px);background-size:auto,75px 75px}
+#nt-wheel .wheel-head{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 5%;border-bottom:1px solid #ffffff18}
+#nt-wheel .wheel-head strong{font-size:19px;letter-spacing:.07em;color:#b8ff56}
+#nt-wheel .wheel-head small{display:block;font-size:12px;color:#a4b1aa;margin-top:5px}
+#nt-wheel button{color:#f5f8f4;background:#141e1b;border:1px solid #4b6054;border-radius:11px;padding:12px 17px;cursor:pointer;font-weight:700}
+#nt-wheel button:hover{background:#b8ff56;color:#0a110c}
+#nt-wheel button:focus-visible{outline:3px solid #b8ff56;outline-offset:3px}
+#nt-wheel .wheel-view{flex:1;min-height:0;position:relative;perspective:1200px;overflow:hidden;touch-action:pan-y}
+#nt-wheel .wheel-axis{position:absolute;inset:0;transform-style:preserve-3d}
+#nt-wheel .wheel-card{position:absolute;top:50%;left:50%;width:360px;height:440px;margin-left:-180px;margin-top:-220px;border:1px solid #ffffff30;border-radius:24px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;backface-visibility:hidden;box-shadow:0 30px 70px #0008;background:linear-gradient(145deg,var(--bg1,#17443b),var(--bg2,#091d1b));transition:transform .75s cubic-bezier(.2,.75,.15,1),opacity .75s,filter .75s;will-change:transform,opacity;transform-style:preserve-3d;text-align:left}
+#nt-wheel .wheel-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 35%,var(--glow,#67bc7844),transparent 55%),linear-gradient(130deg,#ffffff16,transparent 35%);pointer-events:none}
+#nt-wheel .wheel-card:after{content:"";position:absolute;width:220px;height:220px;right:-60px;top:75px;border:1px solid #ffffff40;border-radius:50%;box-shadow:0 0 0 35px #ffffff0c,0 0 0 75px #ffffff08;transform:rotateX(65deg) rotate(-25deg);pointer-events:none}
+#nt-wheel .wheel-card>*{position:relative;z-index:1}
+#nt-wheel .w-number{font-size:11px;letter-spacing:.22em;color:#b8ff56}
+#nt-wheel .w-glyph{font-size:100px;font-weight:700;text-align:center;line-height:1;color:#b8ff56;text-shadow:0 20px 35px #0005}
+#nt-wheel .w-title{font-size:32px;font-weight:700;line-height:1.12;letter-spacing:-.05em;overflow-wrap:anywhere}
+#nt-wheel .w-artist{font-size:14px;color:#c5d3ca}
+#nt-wheel .w-key{font-size:12px;letter-spacing:.12em;color:#b8ff56}
+#nt-wheel .w-action{font-size:11px;letter-spacing:.13em;color:#eaf9ed;border-bottom:1px solid #b8ff56;padding-bottom:6px;align-self:flex-start}
+#nt-wheel .wheel-hint{position:absolute;bottom:18px;left:0;right:0;text-align:center;font-size:10px;letter-spacing:.12em;color:#91a69a;pointer-events:none}
+#nt-wheel .wheel-bottom{position:relative;z-index:3;display:flex;align-items:center;justify-content:center;gap:12px;padding:16px;border-top:1px solid #ffffff18}
+#nt-wheel .wheel-open{background:#b8ff56;color:#071008}
+#nt-wheel .wheel-counter{min-width:72px;text-align:center;color:#b8ff56}
+@media(max-width:700px){#nt-wheel .wheel-head{padding:12px 16px}#nt-wheel .wheel-head strong{font-size:15px}#nt-wheel .wheel-head small{font-size:10px}#nt-wheel .wheel-view{perspective:1000px}#nt-wheel .wheel-card{width:260px;height:340px;margin-left:-130px;margin-top:-170px;padding:23px}#nt-wheel .w-glyph{font-size:65px}#nt-wheel .w-title{font-size:24px}#nt-wheel .wheel-bottom{gap:6px;padding:12px 5px}#nt-wheel .wheel-bottom button{padding:10px 7px;font-size:11px}#nt-wheel .wheel-counter{min-width:48px;font-size:12px}}
+@media(prefers-reduced-motion:reduce){#nt-wheel .wheel-card{transition:none}}

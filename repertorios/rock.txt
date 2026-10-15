@@ -1,0 +1,23 @@
+# NOME: Rock
+# APELIDO: Banda X
+# Numero|Musica|Artista|Tom|URL|Semitons|Observacao
+01|War Pigs|Black Sabbath|E|Referência/original anotada: D
+02|Slither|Velvet Revolver|G|Drop D
+03|Again|Lenny Kravitz|A|
+04|Fly Away|Lenny Kravitz|D|Referência anotada: A
+05|Sunshine of Your Love|Cream|D|
+06|Come Together|The Beatles|D|
+07|Little Wing|Jimi Hendrix|Em|Drop Eb
+08|Voodoo Child|Jimi Hendrix|E|Drop Eb
+09|Purple Haze|Jimi Hendrix|E|Drop Eb
+10|Rock You Like a Hurricane|Scorpions|E|Drop Eb
+11|Mama, I'm Coming Home|Ozzy Osbourne|E|Drop Eb
+12|Crazy Train|Ozzy Osbourne|A|Drop Eb
+13|My Hero|Foo Fighters|E|
+14|Be Yourself|Audioslave|Bm|
+15|Free Bird|Lynyrd Skynyrd|G|
+16|Black|Pearl Jam|E|
+17|Under the Bridge|Red Hot Chili Peppers|E|
+18|Like a Stone|Audioslave|Gm|Baixo Drop D
+19|Everlong|Foo Fighters|D|Drop D
+20|Killing in the Name|Rage Against the Machine|D|Drop D
