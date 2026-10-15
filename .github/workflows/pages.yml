@@ -24,7 +24,7 @@ jobs:
       - name: Preparar site estatico
         run: |
           mkdir -p _site
-          cp -a . _site/
+          tar --exclude='./_site' --exclude='./.git' -cf - . | tar -xf - -C _site
           if [ -f NanotechSoft-Cifras-V16-Completo-Para-GitHub-PUBLICO.zip ]; then
             python3 - <<'PY'
           from pathlib import Path
