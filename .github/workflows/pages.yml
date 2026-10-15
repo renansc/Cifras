@@ -25,6 +25,24 @@ jobs:
         run: |
           mkdir -p _site
           cp -a . _site/
+          if [ -f NanotechSoft-Cifras-V16-Completo-Para-GitHub-PUBLICO.zip ]; then
+            python3 - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+          zipfile = Path('NanotechSoft-Cifras-V16-Completo-Para-GitHub-PUBLICO.zip')
+          with ZipFile(zipfile) as z:
+              for member in z.infolist():
+                  p = Path(member.filename)
+                  if member.is_dir() or '..' in p.parts or '.git' in p.parts or '.github' in p.parts:
+                      continue
+                  if p.name.startswith('backup') and p.suffix.lower()=='.json':
+                      continue
+                  target = Path('_site') / p
+                  target.parent.mkdir(parents=True,exist_ok=True)
+                  target.write_bytes(z.read(member))
+          PY
+          fi
+          rm -f _site/NanotechSoft-Cifras-V16-Completo-Para-GitHub-PUBLICO.zip
           rm -rf _site/.git _site/.github
           if [ -f _site/saida/NanotechSoft-Cifras.html ]; then
             printf '%s\n' '<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=saida/NanotechSoft-Cifras.html"><title>Cifras</title></head><body><a href="saida/NanotechSoft-Cifras.html">Abrir Cifras</a></body></html>' > _site/index.html
