@@ -46,11 +46,9 @@ jobs:
           fi
           rm -f _site/NanotechSoft-Cifras-V16-Completo-Para-GitHub-PUBLICO.zip
           rm -rf _site/.git _site/.github
-          if [ -f _site/saida/NanotechSoft-Cifras.html ]; then
-            printf '%s\n' '<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=saida/NanotechSoft-Cifras.html"><title>Cifras</title></head><body><a href="saida/NanotechSoft-Cifras.html">Abrir Cifras</a></body></html>' > _site/index.html
-          else
-            printf '%s\n' '<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>Cifras</title><h1>NanotechSoft-Cifras</h1><p>Arquivos da aplicacao ainda nao publicados.</p><p><a href="https://github.com/renansc/Cifras">Repositório</a></p>' > _site/index.html
-          fi
+          # Não publicar uma página provisória: falhar quando o HTML não existir.
+          test -s _site/saida/NanotechSoft-Cifras.html
+          printf '%s\\n' '<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=saida/NanotechSoft-Cifras.html"><title>NanotechSoft-Cifras</title></head><body><a href="saida/NanotechSoft-Cifras.html">Abrir aplicativo de cifras</a></body></html>' > _site/index.html
       - name: Enviar artefato
         uses: actions/upload-pages-artifact@v3
         with:
