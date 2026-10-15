@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'NanotechSoft-Cifras-V16-Completo-Para-GitHub.zip'
+      - 'NanotechSoft-Cifras-V16-Completo-Para-GitHub-PUBLICO.zip'
   workflow_dispatch:
 permissions:
   contents: write
@@ -18,7 +18,7 @@ jobs:
         run: |
           python3 - <<'PY'
           import zipfile, pathlib, shutil
-          z = pathlib.Path('NanotechSoft-Cifras-V16-Completo-Para-GitHub.zip')
+          z = pathlib.Path('NanotechSoft-Cifras-V16-Completo-Para-GitHub-PUBLICO.zip')
           if not z.exists():
               raise SystemExit('Envie o pacote ZIP na raiz do repositorio.')
           root = pathlib.Path.cwd().resolve()
