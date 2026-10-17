@@ -5,6 +5,8 @@ const ntSections=[
  {name:'TODAS AS CIFRAS',desc:'Biblioteca completa de músicas, tons e cifras.',icon:'♬',kind:'library'},
  {name:'NOVA CIFRA',desc:'Cadastrar uma música e editar sua cifra.',icon:'＋',kind:'new-song'},
  {name:'NOVO REPERTÓRIO',desc:'Criar e organizar uma nova lista de músicas.',icon:'▤',kind:'new-rep'},
+ {name:'GERENCIAR CIFRAS',desc:'Selecionar, editar ou excluir uma ou várias cifras.',icon:'☑',kind:'manage-library'},
+ {name:'GERENCIAR REPERTÓRIOS',desc:'Selecionar, editar ou excluir um ou vários repertórios.',icon:'☑',kind:'manage-reps'},
  {name:'BACKUP',desc:'Exportar seus repertórios, cifras e anotações.',icon:'⇩',kind:'backup'},
  {name:'RESTAURAR',desc:'Recuperar um backup JSON salvo anteriormente.',icon:'↻',kind:'restore'},
  {name:'IMPORTAR TXT',desc:'Importar músicas a partir de arquivos de texto.',icon:'⇧',kind:'import'}
@@ -74,6 +76,8 @@ function ntActivate(){
  case 'song':ntReturn={level:ntLevel,id:ntCurrentRep,index:ntIndex};ntClose();stage(it.id,it.rep);break;
  case 'new-song':ntClose();newsong();break;
  case 'new-rep':ntClose();newrep();break;
+ case 'manage-library':ntClose();ntOriginalLibrary();break;
+ case 'manage-reps':ntClose();ntOriginalReps();break;
  case 'backup':backup();break;
  case 'restore':restore();break;
  case 'import':importtxt();break;
@@ -100,5 +104,5 @@ back=function(){ntFromStage(0)};
 prev=function(){ntFromStage(-1)};
 next=function(){ntFromStage(1)};
 const ntOriginalReps=reps,ntOriginalLibrary=library;
-reps=function(){ntMenu('reps')};
-library=function(){ntMenu('songs',null)};
+reps=function(){ntClose();ntOriginalReps()};
+library=function(){ntClose();ntOriginalLibrary()};

@@ -1,4 +1,4 @@
-# NanotechSoft-Cifras v3
+# NanotechSoft-Cifras v8.2
 
 Gerador de repertório offline para palco.
 
@@ -20,8 +20,28 @@ sudo apt install python3 python3-bs4
 ```bash
 chmod +x gerar.sh compactar_saida.sh
 ./gerar.sh
-xdg-open saida/index.html
+xdg-open saida/NanotechSoft-Cifras.html
 ```
+
+O arquivo `cifras.html` da raiz e uma copia pronta da mesma aplicacao. Depois de
+gerar novamente, use sempre `saida/NanotechSoft-Cifras.html` como resultado
+principal.
+
+## Excluir cifras e repertorios
+
+No menu 3D, abra **GERENCIAR CIFRAS**. Cada cifra possui a acao **EXCLUIR**. Para apagar
+varias de uma vez, marque as caixas, use **SELECIONAR VISIVEIS** se necessario
+e clique em **EXCLUIR SELECIONADAS**. A busca limita quais cifras o botao de
+selecao marca. A exclusao tambem retira as cifras dos repertorios e remove suas
+anotacoes locais, sempre depois de confirmacao.
+
+Em **GERENCIAR REPERTORIOS**, cada repertorio possui **EXCLUIR**. Para exclusao em lote,
+marque as caixas e clique em **EXCLUIR SELECIONADOS**. As cifras permanecem na
+biblioteca por padrao; uma segunda confirmacao permite remover somente as que
+ficarem sem nenhum repertorio.
+
+O botao **LIMPAR ORFAS** remove cifras que ja nao pertencem a repertorio algum.
+Faca backup antes de exclusoes em lote, pois elas nao podem ser desfeitas.
 
 ## Gerar ZIP do repertório pronto
 ```bash

@@ -90,9 +90,12 @@ printf '\n=== Gerando NanotechSoft-Cifras ===\n'
 "$PYTHON" app/aplicar_carrossel_giratorio.py
 "$PYTHON" app/aplicar_menu3d.py
 "$PYTHON" app/aplicar_v14.py
+"$PYTHON" app/aplicar_v16.py
 "$PYTHON" app/gerar_pdf.py
+cp saida/NanotechSoft-Cifras.html cifras.html
 
 echo
 printf '=== CONCLUÍDO ===\n'
 echo "Aplicação: saida/NanotechSoft-Cifras.html"
+echo "Cópia pronta: cifras.html"
 echo "PDFs: saida/pdf/"
