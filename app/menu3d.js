@@ -95,6 +95,11 @@ function ntClose(){ntEl('nt-app-menu').classList.remove('on');document.body.styl
 function ntFromStage(delta=0){
  if(!Array.isArray(order)||!order.length)return ntMenu('main');
  const i=(pos+delta+order.length)%order.length;
+ if(ntMode==='3d'&&typeof wheelShow==='function'){
+   ntClose();
+   wheelShow(delta);
+   return;
+ }
  ntMenu('songs',rep,i);
 }
 (function(){
