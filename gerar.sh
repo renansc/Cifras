@@ -91,6 +91,7 @@ printf '\n=== Gerando NanotechSoft-Cifras ===\n'
 "$PYTHON" app/aplicar_menu3d.py
 "$PYTHON" app/aplicar_v14.py
 "$PYTHON" app/aplicar_v16.py
+"$PYTHON" app/aplicar_transposicao.py
 "$PYTHON" app/gerar_pdf.py
 cp saida/NanotechSoft-Cifras.html cifras.html
 
