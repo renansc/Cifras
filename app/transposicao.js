@@ -5,8 +5,7 @@
  const SEMI={C:0,"C#":1,Db:1,D:2,"D#":3,Eb:3,F:4,"F#":5,Gb:6,G:7,"G#":8,Ab:8,A:9,"A#":10,Bb:10};
  const ROOT=/^([A-G](?:#|b)?)(.*)$/;
  const CHORD=/^([A-G](?:#|b)?)(?:(?:m|maj|min|dim|aug|sus|add|M|º|°|ø|Δ|\+|-)?[0-9#b+\-°ºøΔ(),]*)?(?:\/[A-G](?:#|b)?)?$/;
- const PREFIX=/^(\s*)([A-G](?:#|b)?)([^\s]*)/;
- let steps=0,sourceId=null,originalText="",originalHTML="";
+ let steps=0,sourceId=null;
  function transposeRoot(note,shift,flats){
    if(!Object.prototype.hasOwnProperty.call(SEMI,note))return note;
    return (flats?FLATS:CHROMA)[((SEMI[note]+shift)%12+12)%12];
@@ -22,10 +21,10 @@
    return transposeRoot(m[1],shift,m[1].includes("b"))+m[2];
  }
  function transposeLine(line,shift,preferFlat){
-   return line.replace(/(^|[\s|:[({])([A-G](?:#|b)?)([^\s|:\])}]*)(?=$|[\s|:\])}])/g,(whole,sep,root,rest)=>{
-     const token=root+rest;
-     if(!CHORD.test(token))return whole;
-     return sep+transposeChord(token,shift,preferFlat);
+   return line.replace(/[^\s]+/g,token=>{
+     const found=/^([|:[({]*)(.*?)([|:\])}]*)$/.exec(token);
+     if(!found||!CHORD.test(found[2]))return token;
+     return found[1]+transposeChord(found[2],shift,preferFlat)+found[3];
    });
  }
  function transposedText(text,shift,preferFlat){
