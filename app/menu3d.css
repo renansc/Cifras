@@ -87,3 +87,22 @@
  #chart{padding:14px;font-size:16px}
  .modal .box{width:min(95vw,550px);max-height:85dvh;padding:18px!important}
 }
+
+/* Navegação 3D compacta, sem ocultar a cifra em execução */
+body.nt-stage-menu #nt-app-menu.on{inset:68px 12px auto auto;width:min(440px,calc(100vw - 24px));height:min(75dvh,640px);border:1px solid #789c7c;border-radius:15px;box-shadow:0 15px 60px #0009;grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);overflow:hidden}
+body.nt-stage-menu #nt-app-menu .nt-global-head{grid-column:1;grid-row:1;flex-wrap:wrap;padding:7px}
+body.nt-stage-menu #nt-app-menu .nt-global-head img{width:27px;height:27px}
+body.nt-stage-menu #nt-app-menu .nt-head-buttons{gap:3px}
+body.nt-stage-menu #nt-app-menu .nt-head-buttons button{padding:6px;font-size:10px}
+body.nt-stage-menu #nt-app-menu .nt-left{display:flex!important;grid-column:1;grid-row:2;padding:12px;gap:5px;overflow-y:auto}
+body.nt-stage-menu #nt-app-menu .nt-left .nt-title{font-size:19px}
+body.nt-stage-menu #nt-app-menu .nt-left .nt-description{display:none}
+body.nt-stage-menu #nt-app-menu .nt-item-list{max-height:none;flex:1;min-height:70px}
+body.nt-stage-menu #nt-app-menu .nt-item-list button{padding:7px}
+body.nt-stage-menu #nt-app-menu .nt-right{display:none}
+body.nt-stage-menu #nt-app-menu .nt-eyebrow{display:none}
+body.nt-stage-menu #nt-app-menu .nt-actions{margin-top:5px}
+body.nt-stage-menu #nt-app-menu .nt-primary{padding:8px}
+body.nt-normal-mode #nt-app-menu{display:none!important}
+#nt-mode-switch{background:#34634a!important;color:#fff!important}
+@media(max-width:760px){body.nt-stage-menu #nt-app-menu.on{top:95px;max-height:65dvh}}
