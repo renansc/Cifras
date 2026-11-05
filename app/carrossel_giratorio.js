@@ -5,7 +5,8 @@ function wheelVisible(){const e=document.getElementById('nt-wheel');return !!e&&
 function wheelShow(delta=0){
  if(!Array.isArray(order)||!order.length)return;
  wheelIndex=((wheelVisible()?wheelIndex:Math.max(0,pos))+delta+order.length)%order.length;
- document.getElementById('nt-wheel').classList.add('open');document.body.style.overflow='hidden';
+ document.getElementById('nt-wheel').classList.add('open');
+ document.getElementById('nt-wheel').classList.toggle('nt-wheel-compact',!!(typeof sid!=='undefined'&&sid&&document.getElementById('stage')?.style.display==='block'));
  wheelBuild();
 }
 function wheelBuild(){
