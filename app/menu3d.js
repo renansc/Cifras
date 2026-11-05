@@ -14,6 +14,11 @@ const ntSections=[
 let ntLevel='main',ntItems=ntSections,ntIndex=0,ntCurrentRep=null,ntReturn=null;
 const ntEl=id=>document.getElementById(id);
 function ntIsOpen(){return ntEl('nt-app-menu').classList.contains('on')}
+function ntHasStage(){return !!(typeof sid!=='undefined'&&sid&&ntEl('stage')&&ntEl('stage').style.display==='block')}
+let ntMode=localStorage.getItem('nt_navigation_mode')||'3d';
+function ntSetMode(mode){ntMode=mode;localStorage.setItem('nt_navigation_mode',mode);ntApplyMode();if(mode==='normal'){ntClose();if(!ntHasStage())ntOriginalReps();}}
+function ntApplyMode(){document.body.classList.toggle('nt-normal-mode',ntMode==='normal');document.body.classList.toggle('nt-stage-menu',ntHasStage()&&ntMode==='3d');const switcher=ntEl('nt-mode-switch');if(switcher)switcher.textContent=ntMode==='3d'?'MODO NORMAL':'MODO 3D';}
+function ntToggleMenu(){if(ntMode==='normal'){if(ntHasStage())ntOriginalBack();else ntOriginalReps();return;}if(ntIsOpen())ntClose();else ntMenu('main');}
 function ntMenu(level='main',id=null,selected=0){
  ntLevel=level;ntCurrentRep=id;ntIndex=selected;
  if(level==='main')ntItems=ntSections;
@@ -22,6 +27,7 @@ function ntMenu(level='main',id=null,selected=0){
  if(!ntItems.length)ntItems=[{name:'Nenhum item cadastrado',desc:'Use o menu principal para cadastrar.',icon:'＋',kind:'empty'}];
  ntIndex=Math.max(0,Math.min(ntIndex,ntItems.length-1));
  ntEl('nt-app-menu').classList.add('on');
+ ntApplyMode();
  ntEl('nt-head-back').style.display=level==='main'?'none':'';
  ntEl('nt-crumb').textContent=level==='main'?'MENU PRINCIPAL':level==='reps'?'MENU / REPERTÓRIOS':'MENU / '+(id?R(id)?.name||'REPERTÓRIO':'TODAS AS CIFRAS');
  ntEl('nt-head-title').textContent=ntEl('nt-crumb').textContent;
@@ -73,7 +79,7 @@ function ntActivate(){
  case 'reps':ntMenu('reps');break;
  case 'library':ntMenu('songs',null);break;
  case 'rep':ntMenu('songs',it.id);break;
- case 'song':ntReturn={level:ntLevel,id:ntCurrentRep,index:ntIndex};ntClose();stage(it.id,it.rep);break;
+ case 'song':ntReturn={level:ntLevel,id:ntCurrentRep,index:ntIndex};ntClose();stage(it.id,it.rep);ntApplyMode();break;
  case 'new-song':ntClose();newsong();break;
  case 'new-rep':ntClose();newrep();break;
  case 'manage-library':ntClose();ntOriginalLibrary();break;
@@ -100,9 +106,12 @@ function ntFromStage(delta=0){
  document.addEventListener('keydown',e=>{if(!ntIsOpen())return;if(e.key==='Escape')ntBack();else if(e.key==='ArrowLeft'){e.preventDefault();ntMove(-1)}else if(e.key==='ArrowRight'){e.preventDefault();ntMove(1)}});
 })();
 const ntOriginalBack=back;
-back=function(){ntFromStage(0)};
-prev=function(){ntFromStage(-1)};
-next=function(){ntFromStage(1)};
+back=function(){if(ntMode==='3d')ntFromStage(0);else ntOriginalBack()};
+prev=function(){if(ntMode==='3d')ntFromStage(-1);else if(pos>0)stage(order[pos-1],rep)};
+next=function(){if(ntMode==='3d')ntFromStage(1);else if(pos+1<order.length)stage(order[pos+1],rep)};
 const ntOriginalReps=reps,ntOriginalLibrary=library;
 reps=function(){ntClose();ntOriginalReps()};
 library=function(){ntClose();ntOriginalLibrary()};
+
+// Mantém o modo selecionado e a navegação compacta durante a apresentação.
+window.addEventListener('load',()=>{ntApplyMode();if(ntMode==='normal')ntClose();});
