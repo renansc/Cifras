@@ -9,6 +9,8 @@ if 'id="nt-app-menu"' not in s:
     js=(base/'app/menu3d.js').read_text(encoding='utf-8')
     s=s.replace('</style>',css+'</style>',1)
     s=s.replace('<div id="stage">',html+'<div id="stage">',1)
+    s=s.replace('onclick="prev()"','onclick="ntStageNavigate(-1)"',1)
+    s=s.replace('onclick="next()"','onclick="ntStageNavigate(1)"',1)
     s=s.replace('<div id="bar"><button','<div id="bar"><button id="nt-mode-switch" onclick="ntSetMode(ntMode===\'3d\'?\'normal\':\'3d\')">MODO NORMAL</button><button onclick="ntToggleMenu()">⌂ MENU</button><button',1)
     s=s.replace('<div class="nav"><button','<div class="nav"><button onclick="ntSetMode(ntMode===\'3d\'?\'normal\':\'3d\')">ALTERNAR NORMAL / 3D</button><button',1)
     s=s.replace('</body>','<script>'+js+'</script><script>window.addEventListener("load",()=>{if(ntMode==="3d")ntMenu("main");});</script></body>',1)
