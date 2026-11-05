@@ -4,7 +4,7 @@
  const FLATS=["C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B"];
  const SEMI={C:0,"C#":1,Db:1,D:2,"D#":3,Eb:3,F:4,"F#":5,Gb:6,G:7,"G#":8,Ab:8,A:9,"A#":10,Bb:10};
  const ROOT=/^([A-G](?:#|b)?)(.*)$/;
- const CHORD=/^([A-G](?:#|b)?)(?:(?:m|maj|min|dim|aug|sus|add|M|º|°|ø|Δ|\+|-)?[0-9#b+\-°ºøΔ(),]*)?(?:\/[A-G](?:#|b)?)?$/;
+ const CHORD=/^[A-G](?:#|b)?(?:(?:m(?:aj|in)?|dim|aug|sus|add|M|º|°|ø|Δ|\+|-)?[0-9#b+\-°ºøΔ(),]*)?(?:\/[A-G](?:#|b)?)?$/;
  let steps=0,sourceId=null;
  function transposeRoot(note,shift,flats){
    if(!Object.prototype.hasOwnProperty.call(SEMI,note))return note;
