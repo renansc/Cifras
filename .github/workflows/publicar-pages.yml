@@ -28,11 +28,22 @@ jobs:
         run: |
           grep -q 'NANOTECH_TRANSPOSICAO_EMBUTIDA' cifras.html
           grep -q 'ntChangeTone' cifras.html
-      - name: Atualizar HTML no repositório (compatível com Pages pela branch)\n        run: |\n          git config user.name 'github-actions[bot]'\n          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'\n          git add cifras.html saida/NanotechSoft-Cifras.html\n          if ! git diff --cached --quiet; then\n            git commit -m 'Atualizar HTML publicado com transposição [skip ci]'\n            git push\n          fi\n      - name: Preparar publicação
+      - name: Atualizar HTML no repositório (compatível com Pages pela branch)
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cifras.html saida/NanotechSoft-Cifras.html
+          if ! git diff --cached --quiet; then
+            git commit -m 'Atualizar HTML publicado com transposição [skip ci]'
+            git push
+          fi
+      - name: Preparar publicação
         run: |
           mkdir -p public
           cp cifras.html public/cifras.html
-          cp cifras.html public/index.html\n          mkdir -p public/saida\n          cp cifras.html public/saida/NanotechSoft-Cifras.html
+          cp cifras.html public/index.html
+          mkdir -p public/saida
+          cp cifras.html public/saida/NanotechSoft-Cifras.html
           touch public/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
