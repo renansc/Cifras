@@ -27,3 +27,17 @@
 #nt-wheel .wheel-counter{min-width:72px;text-align:center;color:#b8ff56}
 @media(max-width:700px){#nt-wheel .wheel-head{padding:12px 16px}#nt-wheel .wheel-head strong{font-size:15px}#nt-wheel .wheel-head small{font-size:10px}#nt-wheel .wheel-view{perspective:1000px}#nt-wheel .wheel-card{width:260px;height:340px;margin-left:-130px;margin-top:-170px;padding:23px}#nt-wheel .w-glyph{font-size:65px}#nt-wheel .w-title{font-size:24px}#nt-wheel .wheel-bottom{gap:6px;padding:12px 5px}#nt-wheel .wheel-bottom button{padding:10px 7px;font-size:11px}#nt-wheel .wheel-counter{min-width:48px;font-size:12px}}
 @media(prefers-reduced-motion:reduce){#nt-wheel .wheel-card{transition:none}}
+
+/* Carrossel compacto: cifra permanece visível atrás do painel */
+#nt-wheel.open.nt-wheel-compact{inset:72px 12px auto auto;width:min(440px,calc(100vw - 24px));height:min(69dvh,600px);border:1px solid #70987a;border-radius:16px;box-shadow:0 18px 60px #0009;z-index:1050}
+#nt-wheel.nt-wheel-compact .wheel-head{padding:9px 12px}
+#nt-wheel.nt-wheel-compact .wheel-head strong{font-size:14px}
+#nt-wheel.nt-wheel-compact .wheel-head small{font-size:10px}
+#nt-wheel.nt-wheel-compact .wheel-card{width:190px;height:245px;margin-left:-95px;margin-top:-122px;padding:15px;border-radius:14px}
+#nt-wheel.nt-wheel-compact .w-glyph{font-size:38px}
+#nt-wheel.nt-wheel-compact .w-title{font-size:20px}
+#nt-wheel.nt-wheel-compact .w-artist{font-size:11px}
+#nt-wheel.nt-wheel-compact .wheel-bottom{padding:7px;gap:6px}
+#nt-wheel.nt-wheel-compact .wheel-bottom button{padding:7px 9px;font-size:11px}
+#nt-wheel.nt-wheel-compact .wheel-hint{display:none}
+@media(max-width:700px){#nt-wheel.open.nt-wheel-compact{top:110px;height:min(60dvh,510px)}}
