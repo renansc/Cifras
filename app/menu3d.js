@@ -92,6 +92,18 @@ function ntActivate(){
 }
 function ntBack(){if(ntLevel==='songs'&&ntCurrentRep)ntMenu('reps',null,Math.max(0,db.reps.findIndex(r=>r.id===ntCurrentRep)));else ntMenu('main')}
 function ntClose(){ntEl('nt-app-menu').classList.remove('on');document.body.style.overflow=''}
+function ntStageNavigate(delta){
+ if(ntMode==='normal'){
+   if(!Array.isArray(order)||!order.length)return;
+   const i=pos+delta;
+   if(i>=0&&i<order.length)stage(order[i],rep);
+   return;
+ }
+ if(typeof wheelShow==='function'&&document.getElementById('nt-wheel')){
+   ntClose();
+   wheelShow(delta);
+ }else ntFromStage(delta);
+}
 function ntFromStage(delta=0){
  if(!Array.isArray(order)||!order.length)return ntMenu('main');
  const i=(pos+delta+order.length)%order.length;
@@ -112,8 +124,8 @@ function ntFromStage(delta=0){
 })();
 const ntOriginalBack=back;
 back=function(){if(ntMode==='3d')ntFromStage(0);else ntOriginalBack()};
-prev=function(){if(ntMode==='3d')ntFromStage(-1);else if(pos>0)stage(order[pos-1],rep)};
-next=function(){if(ntMode==='3d')ntFromStage(1);else if(pos+1<order.length)stage(order[pos+1],rep)};
+prev=function(){ntStageNavigate(-1)};
+next=function(){ntStageNavigate(1)};
 const ntOriginalReps=reps,ntOriginalLibrary=library;
 reps=function(){ntClose();ntOriginalReps()};
 library=function(){ntClose();ntOriginalLibrary()};
