@@ -38,7 +38,8 @@
  window.ntPresentationEnabled=!!controller;
  async function ntSendSong(s){
    try{
-     const payload={title:s.title||'',artist:s.artist||'',key:s.key||'',text:s.text!=null?s.text:'',html:s.text==null?s.html||'':'',fontSize:fs,columns:cols,dark:document.getElementById('stage').classList.contains('dark')};
+     const trans=typeof window.ntCurrentTranspose==='function'?window.ntCurrentTranspose(s):null;
+     const payload={title:s.title||'',artist:s.artist||'',key:trans?trans.key:(s.key||''),text:trans?trans.text:(s.text!=null?s.text:''),html:trans?trans.html:(s.text==null?s.html||'':''),fontSize:fs,columns:cols,dark:document.getElementById('stage').classList.contains('dark')};
      const r=await fetch('/api/present',{method:'POST',headers:{'Content-Type':'application/json','X-Controller-Key':controller},body:JSON.stringify(payload)});
      if(!r.ok)throw new Error('Servidor recusou a atualização ('+r.status+')');
      const badge=document.getElementById('nt-tv-status');if(badge)badge.textContent='TV sincronizada ✓';
