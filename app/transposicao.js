@@ -91,3 +91,53 @@
  };
  window.ntCurrentTranspose=function(s){return transformed(s||current());};
 })();
+
+/* Editor de cifra no palco: modifica os dados originais, sem sair da apresentação. */
+(function(){
+ let panel=null, editingId=null;
+ function close(){if(panel){panel.remove();panel=null;}editingId=null;}
+ window.ntEditOnStage=function(){
+   if(panel)return;
+   const s=typeof song==="function"&&sid?song(sid):null;
+   if(!s)return alert("Abra uma cifra antes de editar.");
+   editingId=s.id;
+   panel=document.createElement("section");
+   panel.id="nt-stage-editor";
+   panel.style.cssText="position:fixed;inset:52px 12px 85px;z-index:1000;background:#202020;color:white;border:2px solid #6c9cbd;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;box-shadow:0 0 0 100vmax #0009;";
+   const heading=document.createElement("strong");
+   heading.textContent="✎ Editar cifra e letra — "+(s.title||"");
+   const hint=document.createElement("small");
+   hint.textContent="Editando a cifra original (tom "+(s.key||"não informado")+"). Alterações de tom feitas na apresentação não são gravadas automaticamente.";
+   const area=document.createElement("textarea");
+   area.id="nt-stage-editor-text";
+   area.style.cssText="flex:1;min-height:100px;width:100%;resize:none;background:#fff;color:#111;font:16px/1.5 monospace;padding:12px;border-radius:7px;white-space:pre;tab-size:4;";
+   area.value=typeof textof==="function"?textof(s):(s.text||"");
+   const actions=document.createElement("div");
+   actions.style.cssText="display:flex;gap:8px;flex-wrap:wrap";
+   const saveButton=document.createElement("button");
+   saveButton.textContent="✓ SALVAR E VOLTAR À CIFRA";
+   saveButton.style.background="#226e45";
+   const cancelButton=document.createElement("button");
+   cancelButton.textContent="CANCELAR";
+   cancelButton.onclick=()=>{if(area.value!==initial&&!confirm("Descartar alterações?"))return;close();};
+   const initial=area.value;
+   saveButton.onclick=()=>{
+     const current=typeof song==="function"?song(editingId):null;
+     if(!current)return alert("Cifra não encontrada.");
+     const previous={text:current.text,html:current.html,pending:current.pending};
+     current.text=area.value;
+     current.html="";
+     current.pending=!area.value.trim();
+     try{save();}catch(e){
+       Object.assign(current,previous);
+       return;
+     }
+     close();
+     if(typeof stage==="function")stage(current.id,rep);
+   };
+   actions.append(saveButton,cancelButton);
+   panel.append(heading,hint,area,actions);
+   document.body.appendChild(panel);
+   area.focus();
+ };
+})();
