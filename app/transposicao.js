@@ -30,7 +30,7 @@
  function transposedText(text,shift,preferFlat){
    return (text||"").split(/\r?\n/).map(line=>{
      // Somente linhas que aparentam ser sequências de acordes.
-     const pieces=line.trim().split(/\s+/).filter(Boolean);
+     const explicit=/^\s*([@=])\s?/.exec(line);\n     if(explicit)return explicit[1]==="@"?line.replace(/^([\\s]*@\\s?)(.*)$/,(_,prefix,body)=>prefix+transposeLine(body,shift,preferFlat)):line;\n     const pieces=line.trim().split(/\s+/).filter(Boolean);
      const chordLine=pieces.length>0&&pieces.every(x=>CHORD.test(x.replace(/^[|:[({]+|[|:\])}]+$/g,"")));
      return chordLine?transposeLine(line,shift,preferFlat):line;
    }).join("\n");
@@ -112,6 +112,27 @@
    area.id="nt-stage-editor-text";
    area.style.cssText="flex:1;min-height:100px;width:100%;resize:none;background:#fff;color:#111;font:16px/1.5 monospace;padding:12px;border-radius:7px;white-space:pre;tab-size:4;";
    area.value=typeof textof==="function"?textof(s):(s.text||"");
+   const marking=document.createElement("div");
+   marking.style.cssText="display:flex;gap:6px;flex-wrap:wrap;align-items:center";
+   function markLines(symbol){
+     const start=area.selectionStart,end=area.selectionEnd,old=area.value;
+     const from=old.lastIndexOf("\\n",Math.max(0,start-1))+1;
+     const to=end>start?((old.indexOf("\\n",end-1)+1)||old.length):((old.indexOf("\\n",start)+1)||old.length);
+     const selected=old.slice(from,to),lines=selected.split("\\n");
+     const result=lines.map(line=>{
+       if(!line.trim())return line;
+       const clean=line.replace(/^(\\s*)[@=]\\s?/, "$1");
+       return symbol?clean.replace(/^(\\s*)/, "$1"+symbol+" "):clean;
+     }).join("\\n");
+     area.value=old.slice(0,from)+result+old.slice(to);
+     area.focus();area.setSelectionRange(from,from+result.length);
+   }
+   for(const [label,symbol] of [["♪ ACORDE","@"],["T LETRA","="],["LIMPAR MARCAÇÃO",""]]){
+     const btn=document.createElement("button");btn.type="button";btn.textContent=label;
+     btn.onclick=()=>markLines(symbol);marking.appendChild(btn);
+   }
+   const help=document.createElement("small");
+   help.textContent="Selecione uma ou mais linhas e clique em ACORDE ou LETRA. @ = acorde, = = letra; as marcas não aparecem no palco. Linhas antigas continuam automáticas.";
    const actions=document.createElement("div");
    actions.style.cssText="display:flex;gap:8px;flex-wrap:wrap";
    const saveButton=document.createElement("button");
@@ -136,7 +157,7 @@
      if(typeof stage==="function")stage(current.id,rep);
    };
    actions.append(saveButton,cancelButton);
-   panel.append(heading,hint,area,actions);
+   panel.append(heading,hint,marking,help,area,actions);
    document.body.appendChild(panel);
    area.focus();
  };
