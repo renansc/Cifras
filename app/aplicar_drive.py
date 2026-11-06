@@ -7,24 +7,47 @@ def replace_one(a,b):
  if s.count(a)!=1: raise RuntimeError('marcador ausente ou duplicado: '+a[:60])
  s=s.replace(a,b,1)
 replace_one('<button onclick="backup()">BACKUP</button>','<button onclick="atualizarDrive()">ATUALIZAR</button><button onclick="backup()">BACKUP</button>')
-replace_one(" {name:'BACKUP',desc:"," {name:'ATUALIZAR',desc:'Atualizar cifras do Google Drive.',icon:'⟳',kind:'update'},\n {name:'BACKUP',desc:")
+replace_one(" {name:'BACKUP',desc:"," {name:'ATUALIZAR',desc:'Atualizar cifras do JSON do GitHub.',icon:'⟳',kind:'update'},\n {name:'BACKUP',desc:")
 replace_one(" case 'backup':backup();break;"," case 'update':atualizarDrive();break;\n case 'backup':backup();break;")
-replace_one('function restore(){',"""async function atualizarDrive(){
+replace_one('function restore(){',"""const NT_DATA_URL=new URL('../backup_Cifras_161026.json',window.location.href).href;
+const NT_SYNC_KEY='nt_github_backup_last_applied_v1';
+async function atualizarDrive(silent=false){
  try{
-  const url=new URL('../dados_cifras.json',window.location.href).href;
-  const response=await fetch(url+'&_='+Date.now(),{cache:'no-store'});
+  const response=await fetch(NT_DATA_URL+'?t='+Date.now(),{cache:'no-store'});
   if(!response.ok)throw new Error('HTTP '+response.status);
   const x=await response.json();
-  if(x.version!==7||!x.db||x.db.version!==7||!Array.isArray(x.db.songs)||!Array.isArray(x.db.reps))throw new Error('Backup v7 inválido');
-  if(!confirm('Atualizar com a cópia publicada do Drive substituirá os dados locais. Faça BACKUP antes de confirmar. Continuar?'))return;
+  if(x.app!=='NanotechSoft-Cifras'||x.version!==7||!x.db||x.db.version!==7||!Array.isArray(x.db.songs)||!Array.isArray(x.db.reps))throw new Error('Backup v7 inválido');
+  const fingerprint=JSON.stringify(x.db);
+  const existing=localStorage.getItem(K);
+  const last=localStorage.getItem(NT_SYNC_KEY);
+  if(existing&&existing===fingerprint){
+   localStorage.setItem(NT_SYNC_KEY,fingerprint);
+   if(!silent)alert('O repertório já está atualizado.');
+   return;
+  }
+  if(existing&&last!==existing){
+   if(silent)return;
+   if(!confirm('Existem dados locais possivelmente diferentes. Salve um BACKUP antes de substituir. Continuar?'))return;
+  }
+  if(!silent&&existing&&last===existing&&!confirm('Substituir os dados locais pelo JSON mais recente do GitHub?'))return;
   const old=db;db=x.db;
   try{save()}catch(e){db=old;throw e}
-  const ids=new Set(db.songs.map(x=>String(x.id)));
-  for(let i=localStorage.length-1;i>=0;i--){let k=localStorage.key(i);if(k&&k.startsWith('nanotech_note_'))localStorage.removeItem(k)}
+  const ids=new Set(db.songs.map(item=>String(item.id)));
+  for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&k.startsWith('nanotech_note_'))localStorage.removeItem(k);}
   for(const [k,v] of Object.entries(x.notes||{}))if(k.startsWith('nanotech_note_')&&ids.has(k.slice(14)))localStorage.setItem(k,v);
-  selectedSongIds.clear();selectedRepIds.clear();reps();alert('Dados atualizados da cópia publicada do Drive.');
- }catch(e){alert('Não foi possível atualizar pelo Google Drive: '+e.message+'. Dados locais preservados.')}
+  if(x.settings){
+   if(x.settings.font)localStorage.palco_fonte=x.settings.font;
+   if(x.settings.theme)localStorage.palco_tema=x.settings.theme;
+  }
+  localStorage.setItem(NT_SYNC_KEY,JSON.stringify(db));
+  selectedSongIds.clear();selectedRepIds.clear();reps();
+  if(!silent)alert('Repertório atualizado pelo GitHub.');
+ }catch(e){
+  if(!silent)alert('Falha ao consultar o JSON do GitHub: '+e.message+'. Dados locais preservados.');
+  else console.warn('Falha na atualização do GitHub',e);
+ }
 }
 function restore(){""")
+replace_one('reps();</script><script>','reps();atualizarDrive(true);</script><script>')
 p.write_text(s,encoding='utf-8')
 print('Botão Atualizar Drive incorporado ao HTML final.')
