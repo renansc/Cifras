@@ -44,7 +44,7 @@ jobs:
           cp cifras.html public/index.html
           mkdir -p public/saida
           cp cifras.html public/saida/NanotechSoft-Cifras.html
-          cp dados_cifras.json public/dados_cifras.json
+          cp backup_Cifras_161026.json public/backup_Cifras_161026.json
           touch public/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
