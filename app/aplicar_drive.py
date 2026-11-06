@@ -11,18 +11,18 @@ replace_one(" {name:'BACKUP',desc:"," {name:'ATUALIZAR',desc:'Atualizar cifras d
 replace_one(" case 'backup':backup();break;"," case 'update':atualizarDrive();break;\n case 'backup':backup();break;")
 replace_one('function restore(){',"""async function atualizarDrive(){
  try{
-  const url='https://drive.google.com/uc?export=download&id=1u-0n3RM9ZDYiUs_dZc_-j6cwRrzmZoc2';
+  const url=new URL('../dados_cifras.json',window.location.href).href;
   const response=await fetch(url+'&_='+Date.now(),{cache:'no-store'});
   if(!response.ok)throw new Error('HTTP '+response.status);
   const x=await response.json();
   if(x.version!==7||!x.db||x.db.version!==7||!Array.isArray(x.db.songs)||!Array.isArray(x.db.reps))throw new Error('Backup v7 inválido');
-  if(!confirm('Atualizar pelo Drive substituirá os dados locais. Faça BACKUP antes de confirmar. Continuar?'))return;
+  if(!confirm('Atualizar com a cópia publicada do Drive substituirá os dados locais. Faça BACKUP antes de confirmar. Continuar?'))return;
   const old=db;db=x.db;
   try{save()}catch(e){db=old;throw e}
   const ids=new Set(db.songs.map(x=>String(x.id)));
   for(let i=localStorage.length-1;i>=0;i--){let k=localStorage.key(i);if(k&&k.startsWith('nanotech_note_'))localStorage.removeItem(k)}
   for(const [k,v] of Object.entries(x.notes||{}))if(k.startsWith('nanotech_note_')&&ids.has(k.slice(14)))localStorage.setItem(k,v);
-  selectedSongIds.clear();selectedRepIds.clear();reps();alert('Dados atualizados do Drive.');
+  selectedSongIds.clear();selectedRepIds.clear();reps();alert('Dados atualizados da cópia publicada do Drive.');
  }catch(e){alert('Não foi possível atualizar pelo Google Drive: '+e.message+'. Dados locais preservados.')}
 }
 function restore(){""")
