@@ -45,6 +45,10 @@ jobs:
           mkdir -p public/saida
           cp cifras.html public/saida/NanotechSoft-Cifras.html
           cp Dados_App_Cifras.json public/Dados_App_Cifras.json
+          cp -r assets public/assets
+          test -s public/Dados_App_Cifras.json
+          test -s public/assets/nanotechsoft-logo.png
+          grep -q 'Dados_App_Cifras.json' public/saida/NanotechSoft-Cifras.html
           touch public/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
