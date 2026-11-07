@@ -26,10 +26,10 @@ async function atualizarDrive(silent=false){
    return;
   }
   if(existing&&last!==existing){
-   if(silent)return;
-   if(!confirm('Existem dados locais possivelmente diferentes. Salve um BACKUP antes de substituir. Continuar?'))return;
+   if(!silent&&!confirm('Existem dados locais possivelmente diferentes. Salve um BACKUP antes de substituir. Continuar?'))return;
   }
   if(!silent&&existing&&last===existing&&!confirm('Substituir os dados locais pelo JSON mais recente do GitHub?'))return;
+  if(silent&&existing&&existing!==fingerprint){try{localStorage.setItem('nt_backup_antes_sync_'+Date.now(),existing)}catch(e){console.warn('Não foi possível guardar cópia local antes da sincronização',e)}}
   const old=db;db=x.db;
   try{save()}catch(e){db=old;throw e}
   const ids=new Set(db.songs.map(item=>String(item.id)));
