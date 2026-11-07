@@ -76,7 +76,9 @@
  }
  window.ntTransposeRender=function(s){
    if(!s)return;
-   if(sourceId!==s.id){sourceId=s.id;steps=0;}
+   // Toda abertura de cifra (inclusive após salvar no editor) começa no tom original.
+   sourceId=s.id;
+   steps=0;
    render(s);
  };
  window.ntChangeTone=function(delta){
