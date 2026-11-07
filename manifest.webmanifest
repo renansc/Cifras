@@ -1,0 +1,18 @@
+{
+  "name": "NanotechSoft Cifras",
+  "short_name": "Cifras",
+  "description": "Repertórios e cifras para apresentações, inclusive offline",
+  "start_url": "./saida/NanotechSoft-Cifras.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#202020",
+  "theme_color": "#202020",
+  "icons": [
+    {
+      "src": "./assets/nanotechsoft-logo.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
