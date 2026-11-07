@@ -21,21 +21,21 @@
    return transposeRoot(m[1],shift,m[1].includes("b"))+m[2];
  }
  function transposeLine(line,shift,preferFlat){
-   return line.replace(/[^\s]+/g,token=>{
-     const found=/^([|:[({]*)(.*?)([|:\])}]*)$/.exec(token);
-     if(!found||!CHORD.test(found[2]))return token;
-     return found[1]+transposeChord(found[2],shift,preferFlat)+found[3];
-   });
+   // Preserva espaços, pontuação e barras, transpondo inclusive o primeiro acorde.
+   return line.replace(/(^|\s)([|:[({]*)([A-G](?:#|b)?(?:m(?:aj|in)?|dim|aug|sus|add|M|º|°|ø|Δ|\\+|-)?[0-9#b+\\-°ºøΔ(),]*(?:\\/[A-G](?:#|b)?)?)([|:\\])}]*)(?=\\s|$)/g,
+     (whole,space,before,chord,after)=>CHORD.test(chord)?space+before+transposeChord(chord,shift,preferFlat)+after:whole);
  }
  function transposedText(text,shift,preferFlat){
-   return (text||"").split(/\r?\n/).map(line=>{
-     // Somente linhas que aparentam ser sequências de acordes.
-     const explicit=/^\s*([@=])\s?/.exec(line);
-     if(explicit)return explicit[1]==="@"?line.replace(/^([\s]*@\s?)(.*)$/,(_,prefix,body)=>prefix+transposeLine(body,shift,preferFlat)):line;
-     const pieces=line.trim().split(/\s+/).filter(Boolean);
-     const chordLine=pieces.length>0&&pieces.every(x=>CHORD.test(x.replace(/^[|:[({]+|[|:\])}]+$/g,"")));
+   return (text||"").split(/\\r?\\n/).map(line=>{
+     const explicit=/^(\\s*)([@=])(\\s*)(.*)$/.exec(line);
+     if(explicit){
+       if(explicit[2]==="=")return line;
+       return explicit[1]+explicit[2]+explicit[3]+transposeLine(explicit[4],shift,preferFlat);
+     }
+     const pieces=line.trim().split(/\\s+/).filter(Boolean);
+     const chordLine=pieces.length>0&&pieces.every(x=>CHORD.test(x.replace(/^[|:[({]+|[|:\\])}]+$/g,"")));
      return chordLine?transposeLine(line,shift,preferFlat):line;
-   }).join("\n");
+   }).join("\\n");
  }
  function transposedHTML(html,shift,preferFlat){
    if(!html||!shift)return html||"";
