@@ -9,7 +9,7 @@ def replace_one(a,b):
 replace_one('<button onclick="backup()">BACKUP</button>','<button onclick="atualizarDrive()">ATUALIZAR</button><button onclick="backup()">BACKUP</button>')
 replace_one(" {name:'BACKUP',desc:"," {name:'ATUALIZAR',desc:'Atualizar cifras do JSON do GitHub.',icon:'⟳',kind:'update'},\n {name:'BACKUP',desc:")
 replace_one(" case 'backup':backup();break;"," case 'update':atualizarDrive();break;\n case 'backup':backup();break;")
-replace_one('function restore(){',"""const NT_DATA_URL=new URL('../Dados_App_Cifras.json',window.location.href).href;
+replace_one('function restore(){',"""const NT_DATA_URL=new URL('/Cifras/Dados_App_Cifras.json',window.location.origin).href;
 const NT_SYNC_KEY='nt_github_backup_last_applied_v1';
 async function atualizarDrive(silent=false){
  try{
@@ -26,6 +26,7 @@ async function atualizarDrive(silent=false){
    return;
   }
   if(existing&&last!==existing){
+   if(silent){console.info('Alterações locais preservadas; use ATUALIZAR para substituir manualmente.');return;}
    if(!silent&&!confirm('Existem dados locais possivelmente diferentes. Salve um BACKUP antes de substituir. Continuar?'))return;
   }
   if(!silent&&existing&&last===existing&&!confirm('Substituir os dados locais pelo JSON mais recente do GitHub?'))return;
