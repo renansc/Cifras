@@ -110,6 +110,22 @@
    heading.textContent="✎ Editar cifra e letra — "+(s.title||"");
    const hint=document.createElement("small");
    hint.textContent="Editando a cifra original (tom "+(s.key||"não informado")+"). Alterações de tom feitas na apresentação não são gravadas automaticamente.";
+   const metadata=document.createElement("div");
+   metadata.style.cssText="display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px";
+   function field(label,value){
+     const wrap=document.createElement("label");
+     wrap.style.cssText="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:bold";
+     const input=document.createElement("input");
+     input.type="text";input.value=value||"";
+     input.style.cssText="width:100%;padding:9px;background:#fff;color:#111;border:1px solid #999;border-radius:7px";
+     wrap.append(document.createTextNode(label),input);
+     metadata.appendChild(wrap);
+     return input;
+   }
+   const nameInput=field("NOME DA MÚSICA",s.title);
+   const artistInput=field("ARTISTA",s.artist);
+   const keyInput=field("TOM ORIGINAL",s.key);
+   const observationInput=field("OBSERVAÇÃO / DESCRIÇÃO",s.observation);
    const area=document.createElement("textarea");
    area.id="nt-stage-editor-text";
    area.style.cssText="flex:1;min-height:100px;width:100%;resize:none;background:#fff;color:#111;font:16px/1.5 monospace;padding:12px;border-radius:7px;white-space:pre;tab-size:4;";
@@ -143,15 +159,23 @@
    saveButton.style.background="#226e45";
    const cancelButton=document.createElement("button");
    cancelButton.textContent="CANCELAR";
-   cancelButton.onclick=()=>{if(area.value!==initial&&!confirm("Descartar alterações?"))return;close();};
-   const initial=area.value;
+   const initial=JSON.stringify([area.value,nameInput.value,artistInput.value,keyInput.value,observationInput.value]);
+   cancelButton.onclick=()=>{if(JSON.stringify([area.value,nameInput.value,artistInput.value,keyInput.value,observationInput.value])!==initial&&!confirm("Descartar alterações?"))return;close();};
    saveButton.onclick=()=>{
      const current=typeof song==="function"?song(editingId):null;
      if(!current)return alert("Cifra não encontrada.");
-     const previous={text:current.text,html:current.html,pending:current.pending};
-     current.text=area.value;
-     current.html="";
-     current.pending=!area.value.trim();
+     const newTitle=nameInput.value.trim();
+     if(!newTitle)return alert("Informe o nome da música.");
+     const previous={title:current.title,artist:current.artist,key:current.key,observation:current.observation,text:current.text,html:current.html,pending:current.pending};
+     current.title=newTitle;
+     current.artist=artistInput.value.trim();
+     current.key=keyInput.value.trim();
+     current.observation=observationInput.value.trim();
+     if(area.value!==(typeof textof==="function"?textof({text:previous.text,html:previous.html}):(previous.text||""))){
+       current.text=area.value;
+       current.html="";
+       current.pending=!area.value.trim();
+     }
      try{save();}catch(e){
        Object.assign(current,previous);
        return;
@@ -160,7 +184,7 @@
      if(typeof stage==="function")stage(current.id,rep);
    };
    actions.append(saveButton,cancelButton);
-   panel.append(heading,hint,marking,help,area,actions);
+   panel.append(heading,hint,metadata,marking,help,area,actions);
    document.body.appendChild(panel);
    area.focus();
  };
