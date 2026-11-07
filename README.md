@@ -109,3 +109,15 @@ Para Google Drive/tablet, prefira `NanotechSoft-Cifras.html` ou o ZIP `NanotechS
 ## Publicar no GitHub
 
 Execute `bash publicar-no-github.sh` nesta pasta. O script publica os arquivos no repositório `renansc/Cifras` e exclui backups JSON locais, para não expor dados em um repositório público.
+
+
+## Dados publicados e sincronização
+
+O arquivo `Dados_App_Cifras.json` na raiz é a fonte de dados publicada.
+O GitHub Actions copia esse JSON para o GitHub Pages. Ao abrir a aplicação,
+o navegador consulta o JSON mais recente e sincroniza os repertórios; o botão
+**ATUALIZAR** permite repetir a consulta sem fechar a página.
+A sincronização automática tenta preservar uma cópia local antes de substituir
+os dados existentes. Edite o JSON no GitHub, aguarde o deploy e recarregue o site.
+
+Este é o único README mantido; os READMEs versionados antigos foram removidos.
