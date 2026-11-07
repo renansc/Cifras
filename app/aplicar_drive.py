@@ -49,5 +49,14 @@ async function atualizarDrive(silent=false){
 }
 function restore(){""")
 replace_one('reps();</script><script>','reps();atualizarDrive(true);</script><script>')
+# Registro do service worker no escopo raiz, válido também na rota /saida/.
+replace_one('</head>', '''<link rel="manifest" href="../manifest.webmanifest">
+<meta name="theme-color" content="#202020">
+<script>
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+ window.addEventListener('load', () => navigator.serviceWorker.register('../sw.js', {scope:'../'}).catch(e => console.warn('Offline indisponível:', e)));
+}
+</script>
+</head>''')
 p.write_text(s,encoding='utf-8')
 print('Botão Atualizar Drive incorporado ao HTML final.')
