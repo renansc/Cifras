@@ -45,7 +45,11 @@ jobs:
           mkdir -p public/saida
           cp cifras.html public/saida/NanotechSoft-Cifras.html
           cp Dados_App_Cifras.json public/Dados_App_Cifras.json
+          cp sw.js manifest.webmanifest public/
           cp -r assets public/assets
+          test -s public/sw.js
+          test -s public/manifest.webmanifest
+          grep -q 'serviceWorker.register' public/index.html
           test -s public/Dados_App_Cifras.json
           test -s public/assets/nanotechsoft-logo.png
           grep -q 'Dados_App_Cifras.json' public/saida/NanotechSoft-Cifras.html
