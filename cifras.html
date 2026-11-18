@@ -890,47 +890,111 @@ function importtxt(){
   }catch(e){alert("Erro ao importar: "+e.message)}
  };rd.readAsText(f)};inp.click()
 }
-function backup(){let n={};const ids=new Set(db.songs.map(s=>String(s.id)));for(let i=0;i<localStorage.length;i++){let k=localStorage.key(i);if(k&&k.startsWith("nanotech_note_")&&ids.has(k.slice(14)))n[k]=localStorage.getItem(k)}let x={app:"NanotechSoft-Cifras",version:7,date:new Date().toISOString(),db,notes:n,settings:{font:localStorage.palco_fonte||"19",theme:localStorage.palco_tema||"light"}},b=new Blob([JSON.stringify(x)],{type:"application/json"}),a=document.createElement("a"),url=URL.createObjectURL(b);a.href=url;a.download="backup_NanotechSoft-Cifras_v7.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),30000)}
-const NT_DATA_URL=new URL('/Cifras/Dados_App_Cifras.json',window.location.origin).href;
-const NT_SYNC_KEY='nt_github_backup_last_applied_v1';
-async function atualizarDrive(silent=false){
+
+function ntSnapshot(){
+ const notes={};
+ for(let i=0;i<localStorage.length;i++){
+  const k=localStorage.key(i);
+  if(k&&k.startsWith('nanotech_note_'))notes[k]=localStorage.getItem(k);
+ }
+ return {app:'NanotechSoft-Cifras',version:7,date:new Date().toISOString(),
+  db:JSON.parse(JSON.stringify(db)),notes,
+  settings:{font:localStorage.palco_fonte||'19',theme:localStorage.palco_tema||'light'}};
+}
+function ntDownload(x,prefix){
+ const blob=new Blob([JSON.stringify(x,null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob),link=document.createElement('a');
+ link.href=url;
+ link.download=prefix+'_'+new Date().toISOString().replace(/[:.]/g,'-')+'.json';
+ document.body.appendChild(link);link.click();link.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),30000);
+}
+function ntValidate(x){
+ if(!x||x.app!=='NanotechSoft-Cifras'||x.version!==7||!x.db||
+    x.db.version!==7||!Array.isArray(x.db.songs)||!Array.isArray(x.db.reps)||
+    (x.notes!==undefined&&(typeof x.notes!=='object'||x.notes===null||Array.isArray(x.notes))))
+  throw Error('Backup v7 inválido ou incompleto');
+}
+function ntProtect(){
+ const snapshot=ntSnapshot(),key='nt_backup_completo_'+Date.now();
+ try{localStorage.setItem(key,JSON.stringify(snapshot))}
+ catch(e){throw Error('Sem espaço para guardar uma cópia de segurança. Exporte BACKUP e libere espaço antes de continuar.')}
+ ntDownload(snapshot,'seguranca_antes_substituir_Cifras');
+ return key;
+}
+function ntApply(x){
+ ntValidate(x);
+ const old=ntSnapshot();
  try{
-  const response=await fetch(NT_DATA_URL+'?t='+Date.now(),{cache:'no-store'});
-  if(!response.ok)throw new Error('HTTP '+response.status);
-  const x=await response.json();
-  if(x.app!=='NanotechSoft-Cifras'||x.version!==7||!x.db||x.db.version!==7||!Array.isArray(x.db.songs)||!Array.isArray(x.db.reps))throw new Error('Backup v7 inválido');
-  const fingerprint=JSON.stringify(x.db);
-  const existing=localStorage.getItem(K);
-  const last=localStorage.getItem(NT_SYNC_KEY);
-  if(existing&&existing===fingerprint){
-   localStorage.setItem(NT_SYNC_KEY,fingerprint);
-   if(!silent)alert('O repertório já está atualizado.');
-   return;
+  localStorage.setItem(K,JSON.stringify(x.db));
+  const ids=new Set(x.db.songs.map(s=>String(s.id)));
+  for(let i=localStorage.length-1;i>=0;i--){
+   const k=localStorage.key(i);
+   if(k&&k.startsWith('nanotech_note_'))localStorage.removeItem(k);
   }
-  if(existing&&last!==existing){
-   if(silent){console.info('Alterações locais preservadas; use ATUALIZAR para substituir manualmente.');return;}
-   if(!silent&&!confirm('Existem dados locais possivelmente diferentes. Salve um BACKUP antes de substituir. Continuar?'))return;
-  }
-  if(!silent&&existing&&last===existing&&!confirm('Substituir os dados locais pelo JSON mais recente do GitHub?'))return;
-  if(silent&&existing&&existing!==fingerprint){try{localStorage.setItem('nt_backup_antes_sync_'+Date.now(),existing)}catch(e){console.warn('Não foi possível guardar cópia local antes da sincronização',e)}}
-  const old=db;db=x.db;
-  try{save()}catch(e){db=old;throw e}
-  const ids=new Set(db.songs.map(item=>String(item.id)));
-  for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&k.startsWith('nanotech_note_'))localStorage.removeItem(k);}
-  for(const [k,v] of Object.entries(x.notes||{}))if(k.startsWith('nanotech_note_')&&ids.has(k.slice(14)))localStorage.setItem(k,v);
+  for(const [k,v] of Object.entries(x.notes||{}))
+   if(k.startsWith('nanotech_note_')&&ids.has(k.slice(14))&&typeof v==='string')
+    localStorage.setItem(k,v);
   if(x.settings){
    if(x.settings.font)localStorage.palco_fonte=x.settings.font;
    if(x.settings.theme)localStorage.palco_tema=x.settings.theme;
   }
-  localStorage.setItem(NT_SYNC_KEY,JSON.stringify(db));
+  db=x.db;
   selectedSongIds.clear();selectedRepIds.clear();reps();
-  if(!silent)alert('Repertório atualizado pelo GitHub.');
  }catch(e){
-  if(!silent)alert('Falha ao consultar o JSON do GitHub: '+e.message+'. Dados locais preservados.');
-  else console.warn('Falha na atualização do GitHub',e);
+  try{
+   localStorage.setItem(K,JSON.stringify(old.db));
+   for(let i=localStorage.length-1;i>=0;i--){
+    const k=localStorage.key(i);
+    if(k&&k.startsWith('nanotech_note_'))localStorage.removeItem(k);
+   }
+   for(const [k,v] of Object.entries(old.notes))localStorage.setItem(k,v);
+   db=old.db;reps();
+  }catch(rollbackError){console.error('Falha ao restaurar estado anterior',rollbackError)}
+  throw e;
  }
 }
-function restore(){let i=document.createElement("input");i.type="file";i.accept=".json";i.onchange=()=>{if(!i.files||!i.files[0])return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(x.version!==7||!x.db||!Array.isArray(x.db.songs)||!Array.isArray(x.db.reps))throw Error("Backup incompatível ou incompleto");const old=db;db=x.db;try{save()}catch(e){db=old;return}const ids=new Set(db.songs.map(s=>String(s.id)));for(let j=localStorage.length-1;j>=0;j--){let k=localStorage.key(j);if(k&&k.startsWith("nanotech_note_"))localStorage.removeItem(k)}for(let [k,v] of Object.entries(x.notes||{})){if(k.startsWith("nanotech_note_")&&ids.has(k.slice(14))){try{localStorage.setItem(k,v)}catch(e){alert("Biblioteca importada, mas o espaço acabou ao importar anotações.");break}}}if(x.settings){try{localStorage.palco_fonte=x.settings.font||"19";localStorage.palco_tema=x.settings.theme||"light"}catch(e){}}selectedSongIds.clear();selectedRepIds.clear();reps();alert("Backup restaurado.")}catch(e){alert(e.message)}};r.readAsText(i.files[0])};i.click()}function closem(id){$(id).classList.remove("on")}load();setTimeout(applycols,0);if(localStorage.palco_tema==="dark")$("stage").classList.add("dark");reps();atualizarDrive(true);</script><script>
+function backup(){ntDownload(ntSnapshot(),'Dados_App_Cifras')}
+const NT_DATA_URL=new URL('/Cifras/Dados_App_Cifras.json',window.location.origin).href;
+const NT_SYNC_KEY='nt_github_backup_last_applied_v1';
+async function atualizarDrive(silent=false){
+ if(silent)return; // Nunca sobrescrever alterações locais automaticamente.
+ try{
+  const response=await fetch(NT_DATA_URL+'?t='+Date.now(),{cache:'no-store'});
+  if(!response.ok)throw Error('HTTP '+response.status);
+  const remote=await response.json();
+  ntValidate(remote);
+  const local=ntSnapshot();
+  if(JSON.stringify({db:local.db,notes:local.notes})===
+     JSON.stringify({db:remote.db,notes:remote.notes||{}})){
+   alert('Músicas, letras, cifras e anotações já estão iguais às do GitHub.');
+   return;
+  }
+  if(!confirm('O GitHub contém dados diferentes dos dados deste navegador. Substituir TODAS as músicas, letras, cifras, nomes, repertórios e anotações locais? Uma cópia completa será salva e baixada antes.'))return;
+  ntProtect();
+  ntApply(remote);
+  localStorage.setItem(NT_SYNC_KEY,JSON.stringify(db));
+  alert('Dados atualizados. A cópia de segurança anterior foi preservada.');
+ }catch(e){alert('Atualização cancelada: '+e.message)}
+}
+function restore(){
+ const input=document.createElement('input');input.type='file';input.accept='.json';
+ input.onchange=()=>{
+  if(!input.files||!input.files[0])return;
+  const reader=new FileReader();
+  reader.onload=()=>{
+   try{
+    const x=JSON.parse(reader.result);ntValidate(x);
+    if(!confirm('Restaurar este arquivo substituirá músicas, letras, cifras, nomes, repertórios e anotações atuais. Salvar uma cópia completa antes de continuar?'))return;
+    ntProtect();ntApply(x);
+    alert('Backup restaurado. A versão anterior foi salva como cópia de segurança.');
+   }catch(e){alert('Restauração cancelada: '+e.message)}
+  };
+  reader.readAsText(input.files[0]);
+ };
+ input.click();
+}
+function closem(id){$(id).classList.remove("on")}load();setTimeout(applycols,0);if(localStorage.palco_tema==="dark")$("stage").classList.add("dark");reps();</script><script>
 let wheelIndex=0,wheelCards=[];
 const wheelPalette=[['#224f40','#0b211c','#9ee8a533'],['#183f4c','#0c2026','#67b8ce33'],['#463b20','#1c180e','#efca6733'],['#3d2b4b','#190f22','#a97acb33'],['#234d3a','#0b241b','#b8ff5633'],['#3c3130','#201412','#e0a07533']];
 function wheelVisible(){const e=document.getElementById('nt-wheel');return !!e&&e.classList.contains('open')}
